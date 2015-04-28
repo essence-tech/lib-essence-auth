@@ -120,13 +120,7 @@ func (this User) HasPermission(id string) bool {
 }
 
 func (this App) caCerts() (*x509.CertPool, error) {
-	certLocation := this.CertificateLocation
-	if certLocation == nil {
-		l := "/etc/ssl/certs/ca-certificates.crt" // Ubuntu default
-		certLocation = &l
-	}
-
-	pemcerts, err := ioutil.ReadFile(*certLocation)
+	pemcerts, err := ioutil.ReadFile(*this.CertificateLocation)
 	if err != nil {
 		return nil, ErrCertificatesFail
 	}
@@ -152,18 +146,16 @@ func (this App) getClient(c *http.Cookie, host string) (*http.Client, error) {
 
 	jar.SetCookies(u, []*http.Cookie{c})
 
-	var tr *http.Transport
+	config := tls.Config{}
 	if this.InsecureSkip != nil && *this.InsecureSkip == true {
-		tr = &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
-	} else {
-		pool, err := this.caCerts()
-		if err == nil {
-			tr = &http.Transport{TLSClientConfig: &tls.Config{RootCAs: pool}}
-		}
+		config.InsecureSkipVerify = true
 	}
 
-	if tr == nil {
-		return &http.Client{Jar: jar}, nil
+	if this.CertificateLocation != nil {
+		pool, err := this.caCerts()
+		if err == nil {
+			config.RootCAs = pool
+		}
 	}
-	return &http.Client{Jar: jar, Transport: tr}, nil
+	return &http.Client{Jar: jar, Transport: &http.Transport{TLSClientConfig: &config}}, nil
 }
