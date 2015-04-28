@@ -2,6 +2,8 @@ package client
 
 import (
 	"code.google.com/p/go.net/publicsuffix"
+	"crypto/tls"
+	"crypto/x509"
 	"encoding/json"
 	"errors"
 	"io/ioutil"
@@ -12,7 +14,8 @@ import (
 )
 
 var (
-	ErrUnauthorised = errors.New("Failed to get user")
+	ErrUnauthorised     = errors.New("Failed to get user")
+	ErrCertificatesFail = errors.New("Failed to get certificate pool")
 )
 
 type App struct {
@@ -20,6 +23,9 @@ type App struct {
 	Id   string
 	Key  string
 	user *User
+
+	InsecureSkip        *bool
+	CertificateLocation *string
 }
 
 type User struct {
@@ -52,7 +58,7 @@ func (this *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) 
 		return nil, err
 	}
 
-	client, err := getClient(c, this.Host)
+	client, err := this.getClient(c, this.Host)
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +119,26 @@ func (this User) HasPermission(id string) bool {
 	return false
 }
 
-func getClient(c *http.Cookie, host string) (*http.Client, error) {
+func (this App) caCerts() (*x509.CertPool, error) {
+	certLocation := this.CertificateLocation
+	if certLocation == nil {
+		l := "/etc/ssl/certs/ca-certificates.crt" // Ubuntu default
+		certLocation = &l
+	}
+
+	pemcerts, err := ioutil.ReadFile(*certLocation)
+	if err != nil {
+		return nil, ErrCertificatesFail
+	}
+
+	pool := x509.NewCertPool()
+	if ok := pool.AppendCertsFromPEM(pemcerts); !ok {
+		return nil, ErrCertificatesFail
+	}
+	return pool, nil
+}
+
+func (this App) getClient(c *http.Cookie, host string) (*http.Client, error) {
 	options := cookiejar.Options{PublicSuffixList: publicsuffix.List}
 	u, err := url.Parse(host)
 	if err != nil {
@@ -127,5 +152,18 @@ func getClient(c *http.Cookie, host string) (*http.Client, error) {
 
 	jar.SetCookies(u, []*http.Cookie{c})
 
-	return &http.Client{Jar: jar}, nil
+	var tr *http.Transport
+	if this.InsecureSkip != nil && *this.InsecureSkip == true {
+		tr = &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
+	} else {
+		pool, err := this.caCerts()
+		if err == nil {
+			tr = &http.Transport{TLSClientConfig: &tls.Config{RootCAs: pool}}
+		}
+	}
+
+	if tr == nil {
+		return &http.Client{Jar: jar}, nil
+	}
+	return &http.Client{Jar: jar, Transport: tr}, nil
 }
