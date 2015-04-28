@@ -2,6 +2,7 @@ package client
 
 import (
 	"code.google.com/p/go.net/publicsuffix"
+	_ "crypto/sha512"
 	"crypto/tls"
 	"crypto/x509"
 	"encoding/json"
