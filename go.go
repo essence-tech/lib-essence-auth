@@ -6,6 +6,7 @@ import (
 	_ "crypto/sha512"
 	"crypto/tls"
 	"crypto/x509"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"io/ioutil"
@@ -144,7 +145,7 @@ func (this *User) PermissionSetId() string {
 
 	id := strings.Join(keys, "_")
 	hashBytes := md5.Sum([]byte(id))
-	hash := string(hashBytes[:])
+	hash := hex.EncodeToString(hashBytes[:])
 	this.permissionSetId = &hash
 	return *this.permissionSetId
 }
