@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
+	"sort"
 	"strings"
 )
 
@@ -30,11 +31,12 @@ type App struct {
 }
 
 type User struct {
-	Email       string       `json:"email"`
-	Name        string       `json:"name"`
-	Picture     string       `json:"picture"`
-	Apps        []AuthApp    `json:"apps"`
-	Permissions []Permission `json:"permissions"`
+	Email           string       `json:"email"`
+	Name            string       `json:"name"`
+	Picture         string       `json:"picture"`
+	Apps            []AuthApp    `json:"apps"`
+	Permissions     []Permission `json:"permissions"`
+	permissionSetId *string      `json:"-"`
 }
 
 type AuthApp struct {
@@ -118,6 +120,31 @@ func (this User) HasPermission(id string) bool {
 		}
 	}
 	return false
+}
+
+// Get a repeatable identifier for this users set of Permissions
+func (this *User) PermissionSetId() string {
+	if this.permissionSetId != nil {
+		return *this.permissionSetId
+	}
+
+	keys := []string{}
+	for _, p := range this.Permissions {
+		collect := []string{}
+		for _, val := range p.Values {
+			for k, v := range val {
+				collect = append(collect, k+"|"+v)
+			}
+		}
+		keys = append(keys, p.Id)
+		keys = append(keys, strings.Join(collect, ":"))
+	}
+	sort.Strings(keys)
+
+	id := strings.Join(keys, "_")
+	this.permissionSetId = &id
+
+	return *this.permissionSetId
 }
 
 func (this App) caCerts() (*x509.CertPool, error) {
