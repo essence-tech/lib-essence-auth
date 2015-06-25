@@ -2,6 +2,7 @@ package client
 
 import (
 	"code.google.com/p/go.net/publicsuffix"
+	"crypto/md5"
 	_ "crypto/sha512"
 	"crypto/tls"
 	"crypto/x509"
@@ -142,8 +143,9 @@ func (this *User) PermissionSetId() string {
 	sort.Strings(keys)
 
 	id := strings.Join(keys, "_")
-	this.permissionSetId = &id
-
+	hashBytes := md5.Sum([]byte(id))
+	hash := string(hashBytes[:])
+	this.permissionSetId = &hash
 	return *this.permissionSetId
 }
 
