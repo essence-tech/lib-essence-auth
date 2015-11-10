@@ -20,6 +20,6 @@ class App(object):
         query_string = {'key': keys}
 
         response = requests.get('{}/me'.format(self.host), params=query_string, cookies=cookie)
-        self.user = response.json()
-        return self.user
+        user = response.json()
 
+        return user
