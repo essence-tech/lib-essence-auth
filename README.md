@@ -24,3 +24,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
     ...
 }
 ```
+
+## Python
+Install from pip with
+```
+pip install git+git://github.com/essence-tech/lib-essence-auth.git@master
+```
+
+```python
+import essenceauth
+
+...
+
+    app = App("auth-service-host", "apps-secret-id", "apps-secret-key")
+    user = app.get_user(dict_of_cookies)
+
+...
+```
