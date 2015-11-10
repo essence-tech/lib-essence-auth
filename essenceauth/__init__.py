@@ -6,6 +6,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+class AuthException(Exception):
+    def __init__(self, message, code):
+        super(AuthException, self).__init__(message)
+        self.code = code
+
+
 class App(object):
     ''' Represents the application
     '''
@@ -32,7 +38,10 @@ class App(object):
         logging.debug(query_string)
 
         response = requests.get('{}/me'.format(self.host), params=query_string, cookies=cookie)
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as err:
+            raise AuthException('Unauthorized user', err.response.status_code)
 
         user = User(self, response.json())
         self.user = user
