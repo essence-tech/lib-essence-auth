@@ -29,8 +29,10 @@ class App(object):
             return self.user
 
         # cookies is expected to be a dict
-        cookie = {'essence_auth': cookies['essence_auth']}
-        logging.debug(cookie)
+        try:
+            cookie = {'essence_auth': cookies['essence_auth']}
+        except KeyError:
+            raise AuthException('Unauthorized user', 401)
 
         # Gather all keys
         keys = sibling_keys.append(self.key) if sibling_keys is not None else self.key
