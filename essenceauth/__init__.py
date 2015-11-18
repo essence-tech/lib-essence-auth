@@ -68,10 +68,15 @@ class Permission(object):
 
     @staticmethod
     def from_api(api_response):
+        try:
+            values = api_response['values']
+        except KeyError:
+            values = None
+
         return Permission(
             api_response['id'],
             api_response['name'],
-            api_response['values'])
+            values)
 
 
 class PermissionEncoder(json.JSONEncoder):
