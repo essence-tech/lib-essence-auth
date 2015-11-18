@@ -92,7 +92,8 @@ class User(object):
             if app['id'] == host_app.id:
                 try:
                     self.permissions = [Permission.from_api(perm) for perm in app['permissions']]
-                except KeyError:
+                except KeyError as err:
+                    logging.error(err)
                     logging.warning('User: No permissions for app {}'.format(host_app.id))
                     self.permissions = None
                     continue
