@@ -54,8 +54,13 @@ class App(object):
         response = requests.post(
             '{}/api/v1/apps/{}'.format(self.host, self.id),
             params={'key': self.key},
-            data=data)
+            data=data,
+            allow_redirects=False)
         response.raise_for_status()
+
+        if response.status_code != 200:
+            raise AuthException('Something went wrong. Check URL', response.status_code)
+
 
 
 class Permission(object):
