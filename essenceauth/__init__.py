@@ -92,11 +92,12 @@ class User(object):
     def __init__(self, host_app, api_response):
         self.name = api_response['name']
         self.email = api_response['email']
+        self.permissions = []
 
         for app in api_response['apps']:
             if app['id'] == host_app.id:
                 try:
-                    self.permissions = [Permission.from_api(perm) for perm in app['permissions']]
+                    self.permissions.extend([Permission.from_api(perm) for perm in app['permissions']])
                 except KeyError as err:
                     logging.error(err)
                     logging.warning('User: No permissions for app {}'.format(host_app.id))
