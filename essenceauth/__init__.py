@@ -39,7 +39,7 @@ class App(object):
         query_string = {'key': keys}
         logging.debug(query_string)
 
-        response = requests.get('{}/me'.format(self.host), params=query_string, cookies=cookie)
+        response = requests.get('{}/me2'.format(self.host), params=query_string, cookies=cookie)
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as err:
