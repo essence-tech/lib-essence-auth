@@ -18,9 +18,18 @@ import (
 )
 
 var (
-	ErrUnauthorised     = errors.New("Failed to get user")
 	ErrCertificatesFail = errors.New("Failed to get certificate pool")
 )
+
+// AuthError An error from or about the auth service
+type AuthError struct {
+	Code int
+	msg  string
+}
+
+func (e AuthError) Error() string {
+	return e.msg
+}
 
 type App struct {
 	Host string
@@ -52,53 +61,53 @@ type Permission struct {
 	Values []map[string]string `json:"values"`
 }
 
-// Return the user for this request
-func (this *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
-	if this.user != nil {
-		return this.user, nil
+// GetUser Return the user for this request
+func (a *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
+	if a.user != nil {
+		return a.user, nil
 	}
 
 	c, err := r.Cookie("essence_auth")
 	if err != nil {
-		return nil, err
+		return nil, AuthError{http.StatusUnauthorized, "Cookie not found"}
 	}
 
-	client, err := this.getClient(c, this.Host)
+	client, err := a.getClient(c, a.Host)
 	if err != nil {
-		return nil, err
+		return nil, AuthError{http.StatusInternalServerError, "Cannot generate auth client"}
 	}
 
 	q := url.Values{}
-	q.Set("key", this.Key)
+	q.Set("key", a.Key)
 	for _, sibling := range siblingKeys {
 		q.Add("key", sibling)
 	}
-	resp, err := client.Get(this.Host + "/me?" + q.Encode())
+	resp, err := client.Get(a.Host + "/me2?" + q.Encode())
 	if err != nil {
-		return nil, err
+		return nil, AuthError{http.StatusInternalServerError, "Cannot make successful auth request"}
 	}
 	if resp.StatusCode != http.StatusOK {
-		return nil, ErrUnauthorised
+		return nil, AuthError{resp.StatusCode, "User request unsuccessful"}
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return nil, AuthError{http.StatusInternalServerError, "Response body read unsuccessful"}
 	}
 
 	var user User
 	if err := json.Unmarshal(body, &user); err != nil {
-		return nil, err
+		return nil, AuthError{http.StatusInternalServerError, "User deocde unsuccessful"}
 	}
 
 	for _, app := range user.Apps {
-		if app.Id == this.Id {
+		if app.Id == a.Id {
 			user.Permissions = app.Permissions
 			break
 		}
 	}
 
-	this.user = &user
+	a.user = &user
 	return &user, nil
 }
 
