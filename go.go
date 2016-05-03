@@ -3,7 +3,7 @@ package client
 import (
 	"code.google.com/p/go.net/publicsuffix"
 	"crypto/md5"
-	_ "crypto/sha512"
+	_ "crypto/sha512" // Fixes SSL
 	"crypto/tls"
 	"crypto/x509"
 	"encoding/hex"
@@ -18,6 +18,7 @@ import (
 )
 
 var (
+	// ErrCertificatesFail error on get a certificate pool.
 	ErrCertificatesFail = errors.New("Failed to get certificate pool")
 )
 
@@ -31,6 +32,7 @@ func (e AuthError) Error() string {
 	return e.msg
 }
 
+// App describes an application in the Auth service.
 type App struct {
 	Host string
 	Id   string
@@ -89,6 +91,8 @@ func (a *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
 	if resp.StatusCode != http.StatusOK {
 		return nil, AuthError{resp.StatusCode, "User request unsuccessful"}
 	}
+	resp.Close = true
+	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
