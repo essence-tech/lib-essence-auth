@@ -1,7 +1,6 @@
 package client
 
 import (
-	"code.google.com/p/go.net/publicsuffix"
 	"crypto/md5"
 	_ "crypto/sha512" // Fixes SSL
 	"crypto/tls"
@@ -9,6 +8,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"golang.org/x/net/publicsuffix"
 	"io/ioutil"
 	"net/http"
 	"net/http/cookiejar"
