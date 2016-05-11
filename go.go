@@ -15,6 +15,7 @@ import (
 	"net/url"
 	"sort"
 	"strings"
+	"time"
 )
 
 var (
@@ -88,11 +89,12 @@ func (a *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
 	if err != nil {
 		return nil, AuthError{http.StatusInternalServerError, "Cannot make successful auth request"}
 	}
+	resp.Close = true
+	defer resp.Body.Close()
+
 	if resp.StatusCode != http.StatusOK {
 		return nil, AuthError{resp.StatusCode, "User request unsuccessful"}
 	}
-	resp.Close = true
-	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -201,5 +203,5 @@ func (this App) getClient(c *http.Cookie, host string) (*http.Client, error) {
 			config.RootCAs = pool
 		}
 	}
-	return &http.Client{Jar: jar, Transport: &http.Transport{TLSClientConfig: &config}}, nil
+	return &http.Client{Jar: jar, Transport: &http.Transport{TLSClientConfig: &config}, Timeout: 1 * time.Minute}, nil
 }
