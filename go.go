@@ -8,6 +8,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"golang.org/x/net/publicsuffix"
 	"io/ioutil"
 	"net/http"
@@ -93,7 +94,7 @@ func (a *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, AuthError{resp.StatusCode, "User request unsuccessful"}
+		return nil, AuthError{resp.StatusCode, fmt.Sprintf("%s: %d", "User request unsuccessful", resp.StatusCode)}
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
