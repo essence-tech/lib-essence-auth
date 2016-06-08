@@ -8,7 +8,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"golang.org/x/net/publicsuffix"
 	"io/ioutil"
 	"net/http"
@@ -37,7 +36,7 @@ func (e AuthError) Error() string {
 // App describes an application in the Auth service.
 type App struct {
 	Host string
-	Id   string
+	ID   string
 	Key  string
 	user *User
 
@@ -45,32 +44,31 @@ type App struct {
 	CertificateLocation *string
 }
 
+// User describes a user in the Auth service.
 type User struct {
 	Email           string       `json:"email"`
 	Name            string       `json:"name"`
 	Picture         string       `json:"picture"`
 	Apps            []AuthApp    `json:"apps"`
 	Permissions     []Permission `json:"permissions"`
-	permissionSetId *string      `json:"-"`
+	permissionSetID *string
 }
 
+// AuthApp the authentication app.
 type AuthApp struct {
-	Id          string       `json:"id"`
+	ID          string       `json:"id"`
 	Permissions []Permission `json:"permissions"`
 }
 
+// Permission a permission of an app.
 type Permission struct {
-	Id     string              `json:"id"`
+	ID     string              `json:"id"`
 	Name   string              `json:"name"`
 	Values []map[string]string `json:"values"`
 }
 
 // GetUser Return the user for this request
 func (a *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
-	if a.user != nil {
-		return a.user, nil
-	}
-
 	c, err := r.Cookie("essence_auth")
 	if err != nil {
 		return nil, AuthError{http.StatusUnauthorized, "Cookie not found"}
@@ -94,7 +92,7 @@ func (a *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, AuthError{resp.StatusCode, fmt.Sprintf("%s: %d", "User request unsuccessful", resp.StatusCode)}
+		return nil, AuthError{resp.StatusCode, "User request unsuccessful"}
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
@@ -108,53 +106,64 @@ func (a *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
 	}
 
 	for _, app := range user.Apps {
-		if app.Id == a.Id {
+		if app.ID == a.ID {
 			user.Permissions = app.Permissions
 			break
 		}
 	}
 
-	a.user = &user
 	return &user, nil
 }
 
-// Set permissions with the auth service
-func (this App) SetPermissions(permissions ...Permission) error {
+// SetPermissions allows an app to set its own permisisons with the auth service.
+func (a App) SetPermissions(permissions ...Permission) error {
 	data, err := json.Marshal(permissions)
 	if err != nil {
 		return err
 	}
 
-	url := this.Host + "/api/v1/apps/" + this.Id + "?key=" + this.Key
+	url := a.Host + "/api/v1/apps/" + a.ID + "?key=" + a.Key
 	_, err = http.Post(url, "application/json", strings.NewReader(string(data)))
 	return err
 }
 
-// Does a user have a specific permission
-func (this User) HasPermission(id string) bool {
-	for _, p := range this.Permissions {
-		if p.Id == id {
+// HasPermission does a user have a specific permission
+func (u User) HasPermission(id string) bool {
+	for _, p := range u.Permissions {
+		if p.ID == id {
 			return true
 		}
 	}
 	return false
 }
 
-// Get a repeatable identifier for this users set of Permissions
-func (this *User) PermissionSetId() string {
-	if this.permissionSetId != nil {
-		return *this.permissionSetId
+// GetValue does a user have a specific value.
+func (u User) GetValue(id string) (string, error) {
+	for _, p := range u.Permissions {
+		for _, values := range p.Values {
+			if v, ok := values[id]; ok {
+				return v, nil
+			}
+		}
+	}
+	return "", AuthError{0, "Value not found"}
+}
+
+// PermissionSetID gets a repeatable identifier for this users set of Permissions.
+func (u *User) PermissionSetID() string {
+	if u.permissionSetID != nil {
+		return *u.permissionSetID
 	}
 
 	keys := []string{}
-	for _, p := range this.Permissions {
+	for _, p := range u.Permissions {
 		collect := []string{}
 		for _, val := range p.Values {
 			for k, v := range val {
 				collect = append(collect, k+"|"+v)
 			}
 		}
-		keys = append(keys, p.Id)
+		keys = append(keys, p.ID)
 		keys = append(keys, strings.Join(collect, ":"))
 	}
 	sort.Strings(keys)
@@ -162,12 +171,12 @@ func (this *User) PermissionSetId() string {
 	id := strings.Join(keys, "_")
 	hashBytes := md5.Sum([]byte(id))
 	hash := hex.EncodeToString(hashBytes[:])
-	this.permissionSetId = &hash
-	return *this.permissionSetId
+	u.permissionSetID = &hash
+	return *u.permissionSetID
 }
 
-func (this App) caCerts() (*x509.CertPool, error) {
-	pemcerts, err := ioutil.ReadFile(*this.CertificateLocation)
+func (a App) caCerts() (*x509.CertPool, error) {
+	pemcerts, err := ioutil.ReadFile(*a.CertificateLocation)
 	if err != nil {
 		return nil, ErrCertificatesFail
 	}
@@ -179,7 +188,7 @@ func (this App) caCerts() (*x509.CertPool, error) {
 	return pool, nil
 }
 
-func (this App) getClient(c *http.Cookie, host string) (*http.Client, error) {
+func (a App) getClient(c *http.Cookie, host string) (*http.Client, error) {
 	options := cookiejar.Options{PublicSuffixList: publicsuffix.List}
 	u, err := url.Parse(host)
 	if err != nil {
@@ -194,12 +203,12 @@ func (this App) getClient(c *http.Cookie, host string) (*http.Client, error) {
 	jar.SetCookies(u, []*http.Cookie{c})
 
 	config := tls.Config{}
-	if this.InsecureSkip != nil && *this.InsecureSkip == true {
+	if a.InsecureSkip != nil && *a.InsecureSkip == true {
 		config.InsecureSkipVerify = true
 	}
 
-	if this.CertificateLocation != nil {
-		pool, err := this.caCerts()
+	if a.CertificateLocation != nil {
+		pool, err := a.caCerts()
 		if err == nil {
 			config.RootCAs = pool
 		}
