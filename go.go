@@ -42,6 +42,8 @@ type App struct {
 
 	InsecureSkip        *bool
 	CertificateLocation *string
+
+	transport *http.Transport
 }
 
 // User describes a user in the Auth service.
@@ -202,16 +204,21 @@ func (a App) getClient(c *http.Cookie, host string) (*http.Client, error) {
 
 	jar.SetCookies(u, []*http.Cookie{c})
 
-	config := tls.Config{}
-	if a.InsecureSkip != nil && *a.InsecureSkip == true {
-		config.InsecureSkipVerify = true
+	if a.transport == nil {
+		config := tls.Config{}
+		if a.InsecureSkip != nil && *a.InsecureSkip == true {
+			config.InsecureSkipVerify = true
+		}
+
+		if a.CertificateLocation != nil {
+			pool, err := a.caCerts()
+			if err == nil {
+				config.RootCAs = pool
+			}
+		}
+
+		a.transport = &http.Transport{TLSClientConfig: &config}
 	}
 
-	if a.CertificateLocation != nil {
-		pool, err := a.caCerts()
-		if err == nil {
-			config.RootCAs = pool
-		}
-	}
-	return &http.Client{Jar: jar, Transport: &http.Transport{TLSClientConfig: &config}, Timeout: 1 * time.Minute}, nil
+	return &http.Client{Jar: jar, Transport: a.transport, Timeout: 1 * time.Minute}, nil
 }
