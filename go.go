@@ -23,6 +23,38 @@ var (
 	ErrCertificatesFail = errors.New("Failed to get certificate pool")
 )
 
+// AppInterface api definition for connecting to the auth service.
+type AppInterface interface {
+	// GetUser given a request fetch the user from the auth service.
+	GetUser(*http.Request, ...string) (UserInterface, error)
+
+	// SetPermissions sets an applications permissions which will then become available to be set in the
+	// auth service interface
+	SetPermissions(...Permission) error
+}
+
+// UserInterface api definition for the service users.
+type UserInterface interface {
+	// HasPermission an application can check to see if a user has a given permission.
+	HasPermission(id string) bool
+
+	// GetValue an application can check to see if a user has a specific value associated with them.
+	GetValue(id string) (string, error)
+
+	// PermissionSetID gets a repeatable identifier for this users set of Permissions. Userful for caching
+	// specific results vs a user.
+	PermissionSetID() string
+}
+
+// NewApp returns a new application instance.
+func NewApp(ID, Key, Host string) AppInterface {
+	return &App{
+		ID:   ID,
+		Key:  Key,
+		Host: Host,
+	}
+}
+
 // AuthError An error from or about the auth service
 type AuthError struct {
 	Code int
@@ -46,31 +78,8 @@ type App struct {
 	transport *http.Transport
 }
 
-// User describes a user in the Auth service.
-type User struct {
-	Email           string       `json:"email"`
-	Name            string       `json:"name"`
-	Picture         string       `json:"picture"`
-	Apps            []AuthApp    `json:"apps"`
-	Permissions     []Permission `json:"permissions"`
-	permissionSetID *string
-}
-
-// AuthApp the authentication app.
-type AuthApp struct {
-	ID          string       `json:"id"`
-	Permissions []Permission `json:"permissions"`
-}
-
-// Permission a permission of an app.
-type Permission struct {
-	ID     string              `json:"id"`
-	Name   string              `json:"name"`
-	Values []map[string]string `json:"values"`
-}
-
 // GetUser Return the user for this request
-func (a *App) GetUser(r *http.Request, siblingKeys ...string) (*User, error) {
+func (a *App) GetUser(r *http.Request, siblingKeys ...string) (UserInterface, error) {
 	c, err := r.Cookie("essence_auth")
 	if err != nil {
 		return nil, AuthError{http.StatusUnauthorized, "Cookie not found"}
@@ -129,54 +138,6 @@ func (a App) SetPermissions(permissions ...Permission) error {
 	return err
 }
 
-// HasPermission does a user have a specific permission
-func (u User) HasPermission(id string) bool {
-	for _, p := range u.Permissions {
-		if p.ID == id {
-			return true
-		}
-	}
-	return false
-}
-
-// GetValue does a user have a specific value.
-func (u User) GetValue(id string) (string, error) {
-	for _, p := range u.Permissions {
-		for _, values := range p.Values {
-			if v, ok := values[id]; ok {
-				return v, nil
-			}
-		}
-	}
-	return "", AuthError{0, "Value not found"}
-}
-
-// PermissionSetID gets a repeatable identifier for this users set of Permissions.
-func (u *User) PermissionSetID() string {
-	if u.permissionSetID != nil {
-		return *u.permissionSetID
-	}
-
-	keys := []string{}
-	for _, p := range u.Permissions {
-		collect := []string{}
-		for _, val := range p.Values {
-			for k, v := range val {
-				collect = append(collect, k+"|"+v)
-			}
-		}
-		keys = append(keys, p.ID)
-		keys = append(keys, strings.Join(collect, ":"))
-	}
-	sort.Strings(keys)
-
-	id := strings.Join(keys, "_")
-	hashBytes := md5.Sum([]byte(id))
-	hash := hex.EncodeToString(hashBytes[:])
-	u.permissionSetID = &hash
-	return *u.permissionSetID
-}
-
 func (a App) caCerts() (*x509.CertPool, error) {
 	pemcerts, err := ioutil.ReadFile(*a.CertificateLocation)
 	if err != nil {
@@ -221,4 +182,75 @@ func (a App) getClient(c *http.Cookie, host string) (*http.Client, error) {
 	}
 
 	return &http.Client{Jar: jar, Transport: a.transport, Timeout: 1 * time.Minute}, nil
+}
+
+// User describes a user in the Auth service.
+type User struct {
+	Email           string       `json:"email"`
+	Name            string       `json:"name"`
+	Picture         string       `json:"picture"`
+	Apps            []AuthApp    `json:"apps"`
+	Permissions     []Permission `json:"permissions"`
+	permissionSetID *string
+}
+
+// AuthApp the authentication app.
+type AuthApp struct {
+	ID          string       `json:"id"`
+	Permissions []Permission `json:"permissions"`
+}
+
+// Permission a permission of an app.
+type Permission struct {
+	ID     string              `json:"id"`
+	Name   string              `json:"name"`
+	Values []map[string]string `json:"values"`
+}
+
+// HasPermission does a user have a specific permission
+func (u *User) HasPermission(id string) bool {
+	for _, p := range u.Permissions {
+		if p.ID == id {
+			return true
+		}
+	}
+	return false
+}
+
+// GetValue does a user have a specific value.
+func (u *User) GetValue(id string) (string, error) {
+	for _, p := range u.Permissions {
+		for _, values := range p.Values {
+			if v, ok := values[id]; ok {
+				return v, nil
+			}
+		}
+	}
+	return "", AuthError{0, "Value not found"}
+}
+
+// PermissionSetID gets a repeatable identifier for this users set of Permissions.
+func (u *User) PermissionSetID() string {
+	if u.permissionSetID != nil {
+		return *u.permissionSetID
+	}
+
+	keys := []string{}
+	for _, p := range u.Permissions {
+		collect := []string{}
+		for _, val := range p.Values {
+			for k, v := range val {
+				collect = append(collect, k+"|"+v)
+			}
+		}
+		keys = append(keys, p.ID)
+		keys = append(keys, strings.Join(collect, ":"))
+	}
+	sort.Strings(keys)
+
+	id := strings.Join(keys, "_")
+	hashBytes := md5.Sum([]byte(id))
+	hash := hex.EncodeToString(hashBytes[:])
+	u.permissionSetID = &hash
+	return *u.permissionSetID
 }
