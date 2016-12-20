@@ -1,0 +1,232 @@
+syntax = "proto3";
+
+package essenceauth;
+
+import "google/api/annotations.proto";
+
+service EssenceAuth {
+
+    // Application endpoints. These are for applications to perform requests related to
+    // themselves.
+
+    // Used by an application to fetch information about a user using their JWT.
+    rpc AppGetUser(AppUserRequest) returns (User) {
+        option (google.api.http) = {
+            post: "/api/v2/user"
+            body: "*"
+        };
+    }
+
+    // An application can get info about itself.
+    rpc AppGetApp(App) returns (App) {
+        option (google.api.http) = {
+            get: "/api/v2/apps/{ID}"
+        };
+    }
+
+    // Allows an application to provide information about its available permissions.
+    // Those permissions can then be given to groups and therefore users.
+    rpc AppUpdateApp(App) returns (App) {
+        option (google.api.http) = {
+            post: "/api/v2/apps/{ID}"
+            body: "*"
+        };
+    }
+
+    // Service administration endpoints. These require a user JWT to be provided as a GRPC metadata
+    // key, "authorization". If using REST this can be provided with the header "Grpc-Metadata-Authorization".
+
+    //
+    // Applications
+    //
+
+    rpc ListApps(Empty) returns (AppList) {
+        option (google.api.http) = {
+            get: "/api/v2/a/apps"
+        };
+    }
+    rpc GetApp(App) returns (App) {
+        option (google.api.http) = {
+            get: "/api/v2/a/apps/{ID}"
+        };
+    }
+    rpc CreateApp(App) returns (App) {
+        option (google.api.http) = {
+            post: "/api/v2/a/apps"
+            body: "*"
+        };
+    }
+    rpc PutApp(AppChange) returns (App) {
+        option (google.api.http) = {
+            put: "/api/v2/a/apps/{ID}"
+            body: "*"
+        };
+    }
+    rpc DeleteApp(App) returns (Empty) {
+        option (google.api.http) = {
+            delete: "/api/v2/a/apps/{ID}"
+        };
+    }
+    rpc GetAppMembers(App) returns (Membership) {
+        option (google.api.http) = {
+            get: "/api/v2/a/apps/{ID}/members"
+        };
+    }
+
+    //
+    // Groups
+    //
+
+    rpc ListGroups(Empty) returns (GroupList) {
+        option (google.api.http) = {
+            get: "/api/v2/a/groups"
+        };
+    }
+    rpc GetGroup(Group) returns (Group) {
+        option (google.api.http) = {
+            get: "/api/v2/a/groups/{ID}"
+        };
+    }
+    rpc CreateGroup(Group) returns (Group) {
+        option (google.api.http) = {
+            post: "/api/v2/a/groups"
+            body: "*"
+        };
+    }
+    rpc PutGroup(GroupChange) returns (Group) {
+        option (google.api.http) = {
+            put: "/api/v2/a/groups/{ID}"
+            body: "*"
+        };
+    }
+    rpc DeleteGroup(Group) returns (Empty) {
+        option (google.api.http) = {
+            delete: "/api/v2/a/groups/{ID}"
+        };
+    }
+    rpc GetGroupMembers(Group) returns (Membership) {
+        option (google.api.http) = {
+            get: "/api/v2/a/groups/{ID}/members"
+        };
+    }
+
+    //
+    // Users
+    //
+
+    rpc ListUsers(Empty) returns (UserList) {
+        option (google.api.http) = {
+            get: "/api/v2/a/users"
+        };
+    }
+    rpc GetUser(User) returns (User) {
+        option (google.api.http) = {
+            get: "/api/v2/a/users/{Email}"
+        };
+    }
+    rpc CreateUser(UserChange) returns (User) {
+        option (google.api.http) = {
+            post: "/api/v2/a/users"
+            body: "*"
+        };
+    }
+    rpc PutUser(UserChange) returns (User) {
+        option (google.api.http) = {
+            put: "/api/v2/a/users/{Email}"
+            body: "*"
+        };
+    }
+    rpc DeleteUser(User) returns (Empty) {
+        option (google.api.http) = {
+            delete: "/api/v2/a/users/{Email}"
+        };
+    }
+    rpc ResetUserPassword(User) returns (UserChange) {
+        option (google.api.http) = {
+            post: "/api/v2/a/users/{Email}/reset"
+        };
+    }
+}
+
+message Empty {}
+
+message App {
+    string ID = 1;
+    string Key = 2;
+    string Name = 3;
+    repeated Permission Permissions = 4;
+}
+
+message AppList {
+    repeated App Apps = 1;
+}
+
+// AppChange is used to update an applications name and admins.
+message AppChange {
+    string ID = 1;
+    string Name = 2;
+    repeated string Members = 3;
+}
+
+// AppUserRequest is used to fetch info about a user by an application.
+message AppUserRequest {
+    string ID = 1;
+    string Key = 2;
+    string JWT = 3;
+}
+
+// Membership provides a list of members and outdsiders for an App or Group.
+message Membership {
+    repeated string Members = 1;
+    repeated string Outsiders = 2;
+}
+
+message Group {
+    int32 ID = 1;
+    string Name = 2;
+    bool Auto = 3;
+    string Owner = 4;
+    repeated App Apps = 5;
+}
+
+message GroupList {
+    repeated Group Groups = 1;
+}
+
+message GroupChange {
+    int32 ID = 1;
+    string Name = 2;
+    bool Auto = 3;
+    repeated string Members = 4;
+    repeated App Apps = 5;
+}
+
+message Permission {
+    string ID = 1;
+    string Name = 2;
+    repeated PermissionValue Values = 3;
+}
+
+message PermissionValue {
+    string Key = 1;
+    string Value = 2;
+}
+
+message User {
+    string Email = 1;
+    string Name = 2;
+    string Picture = 3;
+    bool Admin = 4;
+    repeated App Apps = 5;
+}
+
+message UserList {
+    repeated User Users = 1;
+}
+
+// A user change request or response.
+message UserChange {
+    string Email = 1;
+    string Name = 2;
+    string Password = 3;
+}
