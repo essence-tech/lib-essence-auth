@@ -7,7 +7,7 @@ Clients for the Essence auth service
 import (
     "net/http"
 
-    "github.com/essence-tech/lib-essence-auth/"
+    "github.com/essence-tech/lib-essence-auth/essenceauth"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {

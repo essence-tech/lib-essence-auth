@@ -171,7 +171,7 @@ message AppChange {
 // AppUserRequest is used to fetch info about a user by an application.
 message AppUserRequest {
     string ID = 1;
-    string Key = 2;
+    repeated string Keys = 2;
     string JWT = 3;
 }
 
