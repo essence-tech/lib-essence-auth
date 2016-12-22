@@ -59,7 +59,7 @@ func PermissionSetID(u *essenceauth.User) string {
 	return hex.EncodeToString(hashBytes[:])
 }
 
-// GenAppUserRequest creates a new application user request.
+// GenAppUserRequest a helper function to create a new application user request.
 func GenAppUserRequest(appID string, appKeys []string, r *http.Request) *essenceauth.AppUserRequest {
 	JWT := ""
 	for _, c := range r.Cookies() {
@@ -74,4 +74,18 @@ func GenAppUserRequest(appID string, appKeys []string, r *http.Request) *essence
 		Keys: appKeys,
 		JWT:  JWT,
 	}
+}
+
+// UserHasPermission a helper function to test a user for a specific permission.
+func UserHasPermission(user *essenceauth.User, appID, permID string) bool {
+	for _, a := range user.Apps {
+		if a.ID == appID {
+			for _, p := range a.Permissions {
+				if p.ID == permID {
+					return true
+				}
+			}
+		}
+	}
+	return false
 }
