@@ -2,4 +2,5 @@ build:
   unit:
     image: golang
     commands:
+      - go get -t -d
       - go test -cover ./...
