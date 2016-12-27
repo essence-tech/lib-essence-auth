@@ -7,8 +7,10 @@ import (
 	"net/http"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/essence-tech/lib-essence-auth/essenceauth"
+	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
 
@@ -49,6 +51,7 @@ func PermissionSetID(u *essenceauth.User) string {
 				collect = append(collect, val.Key+"|"+val.Value)
 			}
 			keys = append(keys, p.ID)
+			sort.Strings(collect)
 			keys = append(keys, strings.Join(collect, ":"))
 		}
 	}
@@ -88,4 +91,32 @@ func UserHasPermission(user *essenceauth.User, appID, permID string) bool {
 		}
 	}
 	return false
+}
+
+// PermissionsReporter helps an application report permissions regularly.
+func PermissionsReporter(ID, Key string, service Service, perms []*essenceauth.Permission) {
+	run := func() {
+		err := setPermissions(ID, Key, service, perms)
+		if err != nil {
+			log.Println("Error", err)
+		}
+	}
+	go run()
+
+	ticker := time.NewTicker(time.Hour * 24)
+	go func() {
+		for _ = range ticker.C {
+			go run()
+		}
+	}()
+}
+
+func setPermissions(ID, Key string, service Service, perms []*essenceauth.Permission) error {
+	req := &essenceauth.App{
+		ID:          ID,
+		Key:         Key,
+		Permissions: perms,
+	}
+	_, err := service.AppUpdateApp(context.Background(), req)
+	return err
 }

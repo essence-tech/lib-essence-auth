@@ -1,0 +1,5 @@
+build:
+  unit:
+    image: golang
+    commands:
+      - go test -cover ./...
