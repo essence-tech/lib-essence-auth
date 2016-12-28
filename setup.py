@@ -4,11 +4,11 @@ from distutils.core import setup
 
 setup(
     name='Essence Auth',
-    version='0.2',
-    description='Library for Essence authentication',
+    version='0.3',
+    description='Library for the Essence authentication service.',
     author='Josh Fyne',
     author_email='josh.fyne@essencedigital.com',
     url='https://github.com/essence-tech/lib-essence-auth',
-    packages=['essenceauth',],
-    install_requires=['requests'],
+    packages=['essenceauth'],
+    install_requires=['grpcio', 'protobuf'],
     )
