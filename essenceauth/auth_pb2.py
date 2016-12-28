@@ -751,688 +751,713 @@ UserChange = _reflection.GeneratedProtocolMessageType('UserChange', (_message.Me
 _sym_db.RegisterMessage(UserChange)
 
 
-import grpc
-from grpc.beta import implementations as beta_implementations
-from grpc.beta import interfaces as beta_interfaces
-from grpc.framework.common import cardinality
-from grpc.framework.interfaces.face import utilities as face_utilities
-
-
-class EssenceAuthStub(object):
-
-  def __init__(self, channel):
-    """Constructor.
-
-    Args:
-      channel: A grpc.Channel.
-    """
-    self.AppGetUser = channel.unary_unary(
-        '/essenceauth.EssenceAuth/AppGetUser',
-        request_serializer=AppUserRequest.SerializeToString,
-        response_deserializer=User.FromString,
-        )
-    self.AppGetApp = channel.unary_unary(
-        '/essenceauth.EssenceAuth/AppGetApp',
-        request_serializer=App.SerializeToString,
-        response_deserializer=App.FromString,
-        )
-    self.AppUpdateApp = channel.unary_unary(
-        '/essenceauth.EssenceAuth/AppUpdateApp',
-        request_serializer=App.SerializeToString,
-        response_deserializer=App.FromString,
-        )
-    self.ListApps = channel.unary_unary(
-        '/essenceauth.EssenceAuth/ListApps',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=AppList.FromString,
-        )
-    self.GetApp = channel.unary_unary(
-        '/essenceauth.EssenceAuth/GetApp',
-        request_serializer=App.SerializeToString,
-        response_deserializer=App.FromString,
-        )
-    self.CreateApp = channel.unary_unary(
-        '/essenceauth.EssenceAuth/CreateApp',
-        request_serializer=App.SerializeToString,
-        response_deserializer=App.FromString,
-        )
-    self.PutApp = channel.unary_unary(
-        '/essenceauth.EssenceAuth/PutApp',
-        request_serializer=AppChange.SerializeToString,
-        response_deserializer=App.FromString,
-        )
-    self.DeleteApp = channel.unary_unary(
-        '/essenceauth.EssenceAuth/DeleteApp',
-        request_serializer=App.SerializeToString,
-        response_deserializer=Empty.FromString,
-        )
-    self.GetAppMembers = channel.unary_unary(
-        '/essenceauth.EssenceAuth/GetAppMembers',
-        request_serializer=App.SerializeToString,
-        response_deserializer=Membership.FromString,
-        )
-    self.ListGroups = channel.unary_unary(
-        '/essenceauth.EssenceAuth/ListGroups',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=GroupList.FromString,
-        )
-    self.GetGroup = channel.unary_unary(
-        '/essenceauth.EssenceAuth/GetGroup',
-        request_serializer=Group.SerializeToString,
-        response_deserializer=Group.FromString,
-        )
-    self.CreateGroup = channel.unary_unary(
-        '/essenceauth.EssenceAuth/CreateGroup',
-        request_serializer=Group.SerializeToString,
-        response_deserializer=Group.FromString,
-        )
-    self.PutGroup = channel.unary_unary(
-        '/essenceauth.EssenceAuth/PutGroup',
-        request_serializer=GroupChange.SerializeToString,
-        response_deserializer=Group.FromString,
-        )
-    self.DeleteGroup = channel.unary_unary(
-        '/essenceauth.EssenceAuth/DeleteGroup',
-        request_serializer=Group.SerializeToString,
-        response_deserializer=Empty.FromString,
-        )
-    self.GetGroupMembers = channel.unary_unary(
-        '/essenceauth.EssenceAuth/GetGroupMembers',
-        request_serializer=Group.SerializeToString,
-        response_deserializer=Membership.FromString,
-        )
-    self.ListUsers = channel.unary_unary(
-        '/essenceauth.EssenceAuth/ListUsers',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=UserList.FromString,
-        )
-    self.GetUser = channel.unary_unary(
-        '/essenceauth.EssenceAuth/GetUser',
-        request_serializer=User.SerializeToString,
-        response_deserializer=User.FromString,
-        )
-    self.CreateUser = channel.unary_unary(
-        '/essenceauth.EssenceAuth/CreateUser',
-        request_serializer=UserChange.SerializeToString,
-        response_deserializer=User.FromString,
-        )
-    self.PutUser = channel.unary_unary(
-        '/essenceauth.EssenceAuth/PutUser',
-        request_serializer=UserChange.SerializeToString,
-        response_deserializer=User.FromString,
-        )
-    self.DeleteUser = channel.unary_unary(
-        '/essenceauth.EssenceAuth/DeleteUser',
-        request_serializer=User.SerializeToString,
-        response_deserializer=Empty.FromString,
-        )
-    self.ResetUserPassword = channel.unary_unary(
-        '/essenceauth.EssenceAuth/ResetUserPassword',
-        request_serializer=User.SerializeToString,
-        response_deserializer=UserChange.FromString,
-        )
-
-
-class EssenceAuthServicer(object):
-
-  def AppGetUser(self, request, context):
-    """Application endpoints. These are for applications to perform requests related to
-    themselves.
-
-    Used by an application to fetch information about a user using their JWT.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def AppGetApp(self, request, context):
-    """An application can get info about itself.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def AppUpdateApp(self, request, context):
-    """Allows an application to provide information about its available permissions.
-    Those permissions can then be given to groups and therefore users.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def ListApps(self, request, context):
-    """Service administration endpoints. These require a user JWT to be provided as a GRPC metadata
-    key, "authorization". If using REST this can be provided with the header "Grpc-Metadata-Authorization".
-
-
-    Applications
-
-
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetApp(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def CreateApp(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def PutApp(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def DeleteApp(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetAppMembers(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def ListGroups(self, request, context):
-    """
-    Groups
-
-
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetGroup(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def CreateGroup(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def PutGroup(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def DeleteGroup(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetGroupMembers(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def ListUsers(self, request, context):
-    """
-    Users
-
-
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetUser(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def CreateUser(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def PutUser(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def DeleteUser(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def ResetUserPassword(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-
-def add_EssenceAuthServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'AppGetUser': grpc.unary_unary_rpc_method_handler(
-          servicer.AppGetUser,
-          request_deserializer=AppUserRequest.FromString,
-          response_serializer=User.SerializeToString,
-      ),
-      'AppGetApp': grpc.unary_unary_rpc_method_handler(
-          servicer.AppGetApp,
-          request_deserializer=App.FromString,
-          response_serializer=App.SerializeToString,
-      ),
-      'AppUpdateApp': grpc.unary_unary_rpc_method_handler(
-          servicer.AppUpdateApp,
-          request_deserializer=App.FromString,
-          response_serializer=App.SerializeToString,
-      ),
-      'ListApps': grpc.unary_unary_rpc_method_handler(
-          servicer.ListApps,
-          request_deserializer=Empty.FromString,
-          response_serializer=AppList.SerializeToString,
-      ),
-      'GetApp': grpc.unary_unary_rpc_method_handler(
-          servicer.GetApp,
-          request_deserializer=App.FromString,
-          response_serializer=App.SerializeToString,
-      ),
-      'CreateApp': grpc.unary_unary_rpc_method_handler(
-          servicer.CreateApp,
-          request_deserializer=App.FromString,
-          response_serializer=App.SerializeToString,
-      ),
-      'PutApp': grpc.unary_unary_rpc_method_handler(
-          servicer.PutApp,
-          request_deserializer=AppChange.FromString,
-          response_serializer=App.SerializeToString,
-      ),
-      'DeleteApp': grpc.unary_unary_rpc_method_handler(
-          servicer.DeleteApp,
-          request_deserializer=App.FromString,
-          response_serializer=Empty.SerializeToString,
-      ),
-      'GetAppMembers': grpc.unary_unary_rpc_method_handler(
-          servicer.GetAppMembers,
-          request_deserializer=App.FromString,
-          response_serializer=Membership.SerializeToString,
-      ),
-      'ListGroups': grpc.unary_unary_rpc_method_handler(
-          servicer.ListGroups,
-          request_deserializer=Empty.FromString,
-          response_serializer=GroupList.SerializeToString,
-      ),
-      'GetGroup': grpc.unary_unary_rpc_method_handler(
-          servicer.GetGroup,
-          request_deserializer=Group.FromString,
-          response_serializer=Group.SerializeToString,
-      ),
-      'CreateGroup': grpc.unary_unary_rpc_method_handler(
-          servicer.CreateGroup,
-          request_deserializer=Group.FromString,
-          response_serializer=Group.SerializeToString,
-      ),
-      'PutGroup': grpc.unary_unary_rpc_method_handler(
-          servicer.PutGroup,
-          request_deserializer=GroupChange.FromString,
-          response_serializer=Group.SerializeToString,
-      ),
-      'DeleteGroup': grpc.unary_unary_rpc_method_handler(
-          servicer.DeleteGroup,
-          request_deserializer=Group.FromString,
-          response_serializer=Empty.SerializeToString,
-      ),
-      'GetGroupMembers': grpc.unary_unary_rpc_method_handler(
-          servicer.GetGroupMembers,
-          request_deserializer=Group.FromString,
-          response_serializer=Membership.SerializeToString,
-      ),
-      'ListUsers': grpc.unary_unary_rpc_method_handler(
-          servicer.ListUsers,
-          request_deserializer=Empty.FromString,
-          response_serializer=UserList.SerializeToString,
-      ),
-      'GetUser': grpc.unary_unary_rpc_method_handler(
-          servicer.GetUser,
-          request_deserializer=User.FromString,
-          response_serializer=User.SerializeToString,
-      ),
-      'CreateUser': grpc.unary_unary_rpc_method_handler(
-          servicer.CreateUser,
-          request_deserializer=UserChange.FromString,
-          response_serializer=User.SerializeToString,
-      ),
-      'PutUser': grpc.unary_unary_rpc_method_handler(
-          servicer.PutUser,
-          request_deserializer=UserChange.FromString,
-          response_serializer=User.SerializeToString,
-      ),
-      'DeleteUser': grpc.unary_unary_rpc_method_handler(
-          servicer.DeleteUser,
-          request_deserializer=User.FromString,
-          response_serializer=Empty.SerializeToString,
-      ),
-      'ResetUserPassword': grpc.unary_unary_rpc_method_handler(
-          servicer.ResetUserPassword,
-          request_deserializer=User.FromString,
-          response_serializer=UserChange.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'essenceauth.EssenceAuth', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
-
-
-class BetaEssenceAuthServicer(object):
-  def AppGetUser(self, request, context):
-    """Application endpoints. These are for applications to perform requests related to
-    themselves.
-
-    Used by an application to fetch information about a user using their JWT.
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def AppGetApp(self, request, context):
-    """An application can get info about itself.
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def AppUpdateApp(self, request, context):
-    """Allows an application to provide information about its available permissions.
-    Those permissions can then be given to groups and therefore users.
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def ListApps(self, request, context):
-    """Service administration endpoints. These require a user JWT to be provided as a GRPC metadata
-    key, "authorization". If using REST this can be provided with the header "Grpc-Metadata-Authorization".
-
-
-    Applications
-
-
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetApp(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def CreateApp(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def PutApp(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def DeleteApp(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetAppMembers(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def ListGroups(self, request, context):
-    """
-    Groups
-
-
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetGroup(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def CreateGroup(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def PutGroup(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def DeleteGroup(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetGroupMembers(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def ListUsers(self, request, context):
-    """
-    Users
-
-
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetUser(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def CreateUser(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def PutUser(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def DeleteUser(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def ResetUserPassword(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-
-
-class BetaEssenceAuthStub(object):
-  def AppGetUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Application endpoints. These are for applications to perform requests related to
-    themselves.
-
-    Used by an application to fetch information about a user using their JWT.
-    """
-    raise NotImplementedError()
-  AppGetUser.future = None
-  def AppGetApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """An application can get info about itself.
-    """
-    raise NotImplementedError()
-  AppGetApp.future = None
-  def AppUpdateApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Allows an application to provide information about its available permissions.
-    Those permissions can then be given to groups and therefore users.
-    """
-    raise NotImplementedError()
-  AppUpdateApp.future = None
-  def ListApps(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Service administration endpoints. These require a user JWT to be provided as a GRPC metadata
-    key, "authorization". If using REST this can be provided with the header "Grpc-Metadata-Authorization".
-
-
-    Applications
-
-
-    """
-    raise NotImplementedError()
-  ListApps.future = None
-  def GetApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetApp.future = None
-  def CreateApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  CreateApp.future = None
-  def PutApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  PutApp.future = None
-  def DeleteApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  DeleteApp.future = None
-  def GetAppMembers(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetAppMembers.future = None
-  def ListGroups(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """
-    Groups
-
-
-    """
-    raise NotImplementedError()
-  ListGroups.future = None
-  def GetGroup(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetGroup.future = None
-  def CreateGroup(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  CreateGroup.future = None
-  def PutGroup(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  PutGroup.future = None
-  def DeleteGroup(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  DeleteGroup.future = None
-  def GetGroupMembers(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetGroupMembers.future = None
-  def ListUsers(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """
-    Users
-
-
-    """
-    raise NotImplementedError()
-  ListUsers.future = None
-  def GetUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetUser.future = None
-  def CreateUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  CreateUser.future = None
-  def PutUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  PutUser.future = None
-  def DeleteUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  DeleteUser.future = None
-  def ResetUserPassword(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  ResetUserPassword.future = None
-
-
-def beta_create_EssenceAuth_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  request_deserializers = {
-    ('essenceauth.EssenceAuth', 'AppGetApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'AppGetUser'): AppUserRequest.FromString,
-    ('essenceauth.EssenceAuth', 'AppUpdateApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'CreateApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'CreateGroup'): Group.FromString,
-    ('essenceauth.EssenceAuth', 'CreateUser'): UserChange.FromString,
-    ('essenceauth.EssenceAuth', 'DeleteApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'DeleteGroup'): Group.FromString,
-    ('essenceauth.EssenceAuth', 'DeleteUser'): User.FromString,
-    ('essenceauth.EssenceAuth', 'GetApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'GetAppMembers'): App.FromString,
-    ('essenceauth.EssenceAuth', 'GetGroup'): Group.FromString,
-    ('essenceauth.EssenceAuth', 'GetGroupMembers'): Group.FromString,
-    ('essenceauth.EssenceAuth', 'GetUser'): User.FromString,
-    ('essenceauth.EssenceAuth', 'ListApps'): Empty.FromString,
-    ('essenceauth.EssenceAuth', 'ListGroups'): Empty.FromString,
-    ('essenceauth.EssenceAuth', 'ListUsers'): Empty.FromString,
-    ('essenceauth.EssenceAuth', 'PutApp'): AppChange.FromString,
-    ('essenceauth.EssenceAuth', 'PutGroup'): GroupChange.FromString,
-    ('essenceauth.EssenceAuth', 'PutUser'): UserChange.FromString,
-    ('essenceauth.EssenceAuth', 'ResetUserPassword'): User.FromString,
-  }
-  response_serializers = {
-    ('essenceauth.EssenceAuth', 'AppGetApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'AppGetUser'): User.SerializeToString,
-    ('essenceauth.EssenceAuth', 'AppUpdateApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'CreateApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'CreateGroup'): Group.SerializeToString,
-    ('essenceauth.EssenceAuth', 'CreateUser'): User.SerializeToString,
-    ('essenceauth.EssenceAuth', 'DeleteApp'): Empty.SerializeToString,
-    ('essenceauth.EssenceAuth', 'DeleteGroup'): Empty.SerializeToString,
-    ('essenceauth.EssenceAuth', 'DeleteUser'): Empty.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetAppMembers'): Membership.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetGroup'): Group.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetGroupMembers'): Membership.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetUser'): User.SerializeToString,
-    ('essenceauth.EssenceAuth', 'ListApps'): AppList.SerializeToString,
-    ('essenceauth.EssenceAuth', 'ListGroups'): GroupList.SerializeToString,
-    ('essenceauth.EssenceAuth', 'ListUsers'): UserList.SerializeToString,
-    ('essenceauth.EssenceAuth', 'PutApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'PutGroup'): Group.SerializeToString,
-    ('essenceauth.EssenceAuth', 'PutUser'): User.SerializeToString,
-    ('essenceauth.EssenceAuth', 'ResetUserPassword'): UserChange.SerializeToString,
-  }
-  method_implementations = {
-    ('essenceauth.EssenceAuth', 'AppGetApp'): face_utilities.unary_unary_inline(servicer.AppGetApp),
-    ('essenceauth.EssenceAuth', 'AppGetUser'): face_utilities.unary_unary_inline(servicer.AppGetUser),
-    ('essenceauth.EssenceAuth', 'AppUpdateApp'): face_utilities.unary_unary_inline(servicer.AppUpdateApp),
-    ('essenceauth.EssenceAuth', 'CreateApp'): face_utilities.unary_unary_inline(servicer.CreateApp),
-    ('essenceauth.EssenceAuth', 'CreateGroup'): face_utilities.unary_unary_inline(servicer.CreateGroup),
-    ('essenceauth.EssenceAuth', 'CreateUser'): face_utilities.unary_unary_inline(servicer.CreateUser),
-    ('essenceauth.EssenceAuth', 'DeleteApp'): face_utilities.unary_unary_inline(servicer.DeleteApp),
-    ('essenceauth.EssenceAuth', 'DeleteGroup'): face_utilities.unary_unary_inline(servicer.DeleteGroup),
-    ('essenceauth.EssenceAuth', 'DeleteUser'): face_utilities.unary_unary_inline(servicer.DeleteUser),
-    ('essenceauth.EssenceAuth', 'GetApp'): face_utilities.unary_unary_inline(servicer.GetApp),
-    ('essenceauth.EssenceAuth', 'GetAppMembers'): face_utilities.unary_unary_inline(servicer.GetAppMembers),
-    ('essenceauth.EssenceAuth', 'GetGroup'): face_utilities.unary_unary_inline(servicer.GetGroup),
-    ('essenceauth.EssenceAuth', 'GetGroupMembers'): face_utilities.unary_unary_inline(servicer.GetGroupMembers),
-    ('essenceauth.EssenceAuth', 'GetUser'): face_utilities.unary_unary_inline(servicer.GetUser),
-    ('essenceauth.EssenceAuth', 'ListApps'): face_utilities.unary_unary_inline(servicer.ListApps),
-    ('essenceauth.EssenceAuth', 'ListGroups'): face_utilities.unary_unary_inline(servicer.ListGroups),
-    ('essenceauth.EssenceAuth', 'ListUsers'): face_utilities.unary_unary_inline(servicer.ListUsers),
-    ('essenceauth.EssenceAuth', 'PutApp'): face_utilities.unary_unary_inline(servicer.PutApp),
-    ('essenceauth.EssenceAuth', 'PutGroup'): face_utilities.unary_unary_inline(servicer.PutGroup),
-    ('essenceauth.EssenceAuth', 'PutUser'): face_utilities.unary_unary_inline(servicer.PutUser),
-    ('essenceauth.EssenceAuth', 'ResetUserPassword'): face_utilities.unary_unary_inline(servicer.ResetUserPassword),
-  }
-  server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-  return beta_implementations.server(method_implementations, options=server_options)
-
-
-def beta_create_EssenceAuth_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  request_serializers = {
-    ('essenceauth.EssenceAuth', 'AppGetApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'AppGetUser'): AppUserRequest.SerializeToString,
-    ('essenceauth.EssenceAuth', 'AppUpdateApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'CreateApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'CreateGroup'): Group.SerializeToString,
-    ('essenceauth.EssenceAuth', 'CreateUser'): UserChange.SerializeToString,
-    ('essenceauth.EssenceAuth', 'DeleteApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'DeleteGroup'): Group.SerializeToString,
-    ('essenceauth.EssenceAuth', 'DeleteUser'): User.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetApp'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetAppMembers'): App.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetGroup'): Group.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetGroupMembers'): Group.SerializeToString,
-    ('essenceauth.EssenceAuth', 'GetUser'): User.SerializeToString,
-    ('essenceauth.EssenceAuth', 'ListApps'): Empty.SerializeToString,
-    ('essenceauth.EssenceAuth', 'ListGroups'): Empty.SerializeToString,
-    ('essenceauth.EssenceAuth', 'ListUsers'): Empty.SerializeToString,
-    ('essenceauth.EssenceAuth', 'PutApp'): AppChange.SerializeToString,
-    ('essenceauth.EssenceAuth', 'PutGroup'): GroupChange.SerializeToString,
-    ('essenceauth.EssenceAuth', 'PutUser'): UserChange.SerializeToString,
-    ('essenceauth.EssenceAuth', 'ResetUserPassword'): User.SerializeToString,
-  }
-  response_deserializers = {
-    ('essenceauth.EssenceAuth', 'AppGetApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'AppGetUser'): User.FromString,
-    ('essenceauth.EssenceAuth', 'AppUpdateApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'CreateApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'CreateGroup'): Group.FromString,
-    ('essenceauth.EssenceAuth', 'CreateUser'): User.FromString,
-    ('essenceauth.EssenceAuth', 'DeleteApp'): Empty.FromString,
-    ('essenceauth.EssenceAuth', 'DeleteGroup'): Empty.FromString,
-    ('essenceauth.EssenceAuth', 'DeleteUser'): Empty.FromString,
-    ('essenceauth.EssenceAuth', 'GetApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'GetAppMembers'): Membership.FromString,
-    ('essenceauth.EssenceAuth', 'GetGroup'): Group.FromString,
-    ('essenceauth.EssenceAuth', 'GetGroupMembers'): Membership.FromString,
-    ('essenceauth.EssenceAuth', 'GetUser'): User.FromString,
-    ('essenceauth.EssenceAuth', 'ListApps'): AppList.FromString,
-    ('essenceauth.EssenceAuth', 'ListGroups'): GroupList.FromString,
-    ('essenceauth.EssenceAuth', 'ListUsers'): UserList.FromString,
-    ('essenceauth.EssenceAuth', 'PutApp'): App.FromString,
-    ('essenceauth.EssenceAuth', 'PutGroup'): Group.FromString,
-    ('essenceauth.EssenceAuth', 'PutUser'): User.FromString,
-    ('essenceauth.EssenceAuth', 'ResetUserPassword'): UserChange.FromString,
-  }
-  cardinalities = {
-    'AppGetApp': cardinality.Cardinality.UNARY_UNARY,
-    'AppGetUser': cardinality.Cardinality.UNARY_UNARY,
-    'AppUpdateApp': cardinality.Cardinality.UNARY_UNARY,
-    'CreateApp': cardinality.Cardinality.UNARY_UNARY,
-    'CreateGroup': cardinality.Cardinality.UNARY_UNARY,
-    'CreateUser': cardinality.Cardinality.UNARY_UNARY,
-    'DeleteApp': cardinality.Cardinality.UNARY_UNARY,
-    'DeleteGroup': cardinality.Cardinality.UNARY_UNARY,
-    'DeleteUser': cardinality.Cardinality.UNARY_UNARY,
-    'GetApp': cardinality.Cardinality.UNARY_UNARY,
-    'GetAppMembers': cardinality.Cardinality.UNARY_UNARY,
-    'GetGroup': cardinality.Cardinality.UNARY_UNARY,
-    'GetGroupMembers': cardinality.Cardinality.UNARY_UNARY,
-    'GetUser': cardinality.Cardinality.UNARY_UNARY,
-    'ListApps': cardinality.Cardinality.UNARY_UNARY,
-    'ListGroups': cardinality.Cardinality.UNARY_UNARY,
-    'ListUsers': cardinality.Cardinality.UNARY_UNARY,
-    'PutApp': cardinality.Cardinality.UNARY_UNARY,
-    'PutGroup': cardinality.Cardinality.UNARY_UNARY,
-    'PutUser': cardinality.Cardinality.UNARY_UNARY,
-    'ResetUserPassword': cardinality.Cardinality.UNARY_UNARY,
-  }
-  stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-  return beta_implementations.dynamic_stub(channel, 'essenceauth.EssenceAuth', cardinalities, options=stub_options)
+try:
+  # THESE ELEMENTS WILL BE DEPRECATED.
+  # Please use the generated *_pb2_grpc.py files instead.
+  import grpc
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
+  from grpc.beta import implementations as beta_implementations
+  from grpc.beta import interfaces as beta_interfaces
+
+
+  class EssenceAuthStub(object):
+
+    def __init__(self, channel):
+      """Constructor.
+
+      Args:
+        channel: A grpc.Channel.
+      """
+      self.AppGetUser = channel.unary_unary(
+          '/essenceauth.EssenceAuth/AppGetUser',
+          request_serializer=AppUserRequest.SerializeToString,
+          response_deserializer=User.FromString,
+          )
+      self.AppGetApp = channel.unary_unary(
+          '/essenceauth.EssenceAuth/AppGetApp',
+          request_serializer=App.SerializeToString,
+          response_deserializer=App.FromString,
+          )
+      self.AppUpdateApp = channel.unary_unary(
+          '/essenceauth.EssenceAuth/AppUpdateApp',
+          request_serializer=App.SerializeToString,
+          response_deserializer=App.FromString,
+          )
+      self.ListApps = channel.unary_unary(
+          '/essenceauth.EssenceAuth/ListApps',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=AppList.FromString,
+          )
+      self.GetApp = channel.unary_unary(
+          '/essenceauth.EssenceAuth/GetApp',
+          request_serializer=App.SerializeToString,
+          response_deserializer=App.FromString,
+          )
+      self.CreateApp = channel.unary_unary(
+          '/essenceauth.EssenceAuth/CreateApp',
+          request_serializer=App.SerializeToString,
+          response_deserializer=App.FromString,
+          )
+      self.PutApp = channel.unary_unary(
+          '/essenceauth.EssenceAuth/PutApp',
+          request_serializer=AppChange.SerializeToString,
+          response_deserializer=App.FromString,
+          )
+      self.DeleteApp = channel.unary_unary(
+          '/essenceauth.EssenceAuth/DeleteApp',
+          request_serializer=App.SerializeToString,
+          response_deserializer=Empty.FromString,
+          )
+      self.GetAppMembers = channel.unary_unary(
+          '/essenceauth.EssenceAuth/GetAppMembers',
+          request_serializer=App.SerializeToString,
+          response_deserializer=Membership.FromString,
+          )
+      self.ListGroups = channel.unary_unary(
+          '/essenceauth.EssenceAuth/ListGroups',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=GroupList.FromString,
+          )
+      self.GetGroup = channel.unary_unary(
+          '/essenceauth.EssenceAuth/GetGroup',
+          request_serializer=Group.SerializeToString,
+          response_deserializer=Group.FromString,
+          )
+      self.CreateGroup = channel.unary_unary(
+          '/essenceauth.EssenceAuth/CreateGroup',
+          request_serializer=Group.SerializeToString,
+          response_deserializer=Group.FromString,
+          )
+      self.PutGroup = channel.unary_unary(
+          '/essenceauth.EssenceAuth/PutGroup',
+          request_serializer=GroupChange.SerializeToString,
+          response_deserializer=Group.FromString,
+          )
+      self.DeleteGroup = channel.unary_unary(
+          '/essenceauth.EssenceAuth/DeleteGroup',
+          request_serializer=Group.SerializeToString,
+          response_deserializer=Empty.FromString,
+          )
+      self.GetGroupMembers = channel.unary_unary(
+          '/essenceauth.EssenceAuth/GetGroupMembers',
+          request_serializer=Group.SerializeToString,
+          response_deserializer=Membership.FromString,
+          )
+      self.ListUsers = channel.unary_unary(
+          '/essenceauth.EssenceAuth/ListUsers',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=UserList.FromString,
+          )
+      self.GetUser = channel.unary_unary(
+          '/essenceauth.EssenceAuth/GetUser',
+          request_serializer=User.SerializeToString,
+          response_deserializer=User.FromString,
+          )
+      self.CreateUser = channel.unary_unary(
+          '/essenceauth.EssenceAuth/CreateUser',
+          request_serializer=UserChange.SerializeToString,
+          response_deserializer=User.FromString,
+          )
+      self.PutUser = channel.unary_unary(
+          '/essenceauth.EssenceAuth/PutUser',
+          request_serializer=UserChange.SerializeToString,
+          response_deserializer=User.FromString,
+          )
+      self.DeleteUser = channel.unary_unary(
+          '/essenceauth.EssenceAuth/DeleteUser',
+          request_serializer=User.SerializeToString,
+          response_deserializer=Empty.FromString,
+          )
+      self.ResetUserPassword = channel.unary_unary(
+          '/essenceauth.EssenceAuth/ResetUserPassword',
+          request_serializer=User.SerializeToString,
+          response_deserializer=UserChange.FromString,
+          )
+
+
+  class EssenceAuthServicer(object):
+
+    def AppGetUser(self, request, context):
+      """Application endpoints. These are for applications to perform requests related to
+      themselves.
+
+      Used by an application to fetch information about a user using their JWT.
+      """
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def AppGetApp(self, request, context):
+      """An application can get info about itself.
+      """
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def AppUpdateApp(self, request, context):
+      """Allows an application to provide information about its available permissions.
+      Those permissions can then be given to groups and therefore users.
+      """
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def ListApps(self, request, context):
+      """Service administration endpoints. These require a user JWT to be provided as a GRPC metadata
+      key, "authorization". If using REST this can be provided with the header "Grpc-Metadata-Authorization".
+
+
+      Applications
+
+
+      """
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetApp(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def CreateApp(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def PutApp(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def DeleteApp(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetAppMembers(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def ListGroups(self, request, context):
+      """
+      Groups
+
+
+      """
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetGroup(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def CreateGroup(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def PutGroup(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def DeleteGroup(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetGroupMembers(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def ListUsers(self, request, context):
+      """
+      Users
+
+
+      """
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetUser(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def CreateUser(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def PutUser(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def DeleteUser(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def ResetUserPassword(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+
+  def add_EssenceAuthServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+        'AppGetUser': grpc.unary_unary_rpc_method_handler(
+            servicer.AppGetUser,
+            request_deserializer=AppUserRequest.FromString,
+            response_serializer=User.SerializeToString,
+        ),
+        'AppGetApp': grpc.unary_unary_rpc_method_handler(
+            servicer.AppGetApp,
+            request_deserializer=App.FromString,
+            response_serializer=App.SerializeToString,
+        ),
+        'AppUpdateApp': grpc.unary_unary_rpc_method_handler(
+            servicer.AppUpdateApp,
+            request_deserializer=App.FromString,
+            response_serializer=App.SerializeToString,
+        ),
+        'ListApps': grpc.unary_unary_rpc_method_handler(
+            servicer.ListApps,
+            request_deserializer=Empty.FromString,
+            response_serializer=AppList.SerializeToString,
+        ),
+        'GetApp': grpc.unary_unary_rpc_method_handler(
+            servicer.GetApp,
+            request_deserializer=App.FromString,
+            response_serializer=App.SerializeToString,
+        ),
+        'CreateApp': grpc.unary_unary_rpc_method_handler(
+            servicer.CreateApp,
+            request_deserializer=App.FromString,
+            response_serializer=App.SerializeToString,
+        ),
+        'PutApp': grpc.unary_unary_rpc_method_handler(
+            servicer.PutApp,
+            request_deserializer=AppChange.FromString,
+            response_serializer=App.SerializeToString,
+        ),
+        'DeleteApp': grpc.unary_unary_rpc_method_handler(
+            servicer.DeleteApp,
+            request_deserializer=App.FromString,
+            response_serializer=Empty.SerializeToString,
+        ),
+        'GetAppMembers': grpc.unary_unary_rpc_method_handler(
+            servicer.GetAppMembers,
+            request_deserializer=App.FromString,
+            response_serializer=Membership.SerializeToString,
+        ),
+        'ListGroups': grpc.unary_unary_rpc_method_handler(
+            servicer.ListGroups,
+            request_deserializer=Empty.FromString,
+            response_serializer=GroupList.SerializeToString,
+        ),
+        'GetGroup': grpc.unary_unary_rpc_method_handler(
+            servicer.GetGroup,
+            request_deserializer=Group.FromString,
+            response_serializer=Group.SerializeToString,
+        ),
+        'CreateGroup': grpc.unary_unary_rpc_method_handler(
+            servicer.CreateGroup,
+            request_deserializer=Group.FromString,
+            response_serializer=Group.SerializeToString,
+        ),
+        'PutGroup': grpc.unary_unary_rpc_method_handler(
+            servicer.PutGroup,
+            request_deserializer=GroupChange.FromString,
+            response_serializer=Group.SerializeToString,
+        ),
+        'DeleteGroup': grpc.unary_unary_rpc_method_handler(
+            servicer.DeleteGroup,
+            request_deserializer=Group.FromString,
+            response_serializer=Empty.SerializeToString,
+        ),
+        'GetGroupMembers': grpc.unary_unary_rpc_method_handler(
+            servicer.GetGroupMembers,
+            request_deserializer=Group.FromString,
+            response_serializer=Membership.SerializeToString,
+        ),
+        'ListUsers': grpc.unary_unary_rpc_method_handler(
+            servicer.ListUsers,
+            request_deserializer=Empty.FromString,
+            response_serializer=UserList.SerializeToString,
+        ),
+        'GetUser': grpc.unary_unary_rpc_method_handler(
+            servicer.GetUser,
+            request_deserializer=User.FromString,
+            response_serializer=User.SerializeToString,
+        ),
+        'CreateUser': grpc.unary_unary_rpc_method_handler(
+            servicer.CreateUser,
+            request_deserializer=UserChange.FromString,
+            response_serializer=User.SerializeToString,
+        ),
+        'PutUser': grpc.unary_unary_rpc_method_handler(
+            servicer.PutUser,
+            request_deserializer=UserChange.FromString,
+            response_serializer=User.SerializeToString,
+        ),
+        'DeleteUser': grpc.unary_unary_rpc_method_handler(
+            servicer.DeleteUser,
+            request_deserializer=User.FromString,
+            response_serializer=Empty.SerializeToString,
+        ),
+        'ResetUserPassword': grpc.unary_unary_rpc_method_handler(
+            servicer.ResetUserPassword,
+            request_deserializer=User.FromString,
+            response_serializer=UserChange.SerializeToString,
+        ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+        'essenceauth.EssenceAuth', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+  class BetaEssenceAuthServicer(object):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This class was generated
+    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def AppGetUser(self, request, context):
+      """Application endpoints. These are for applications to perform requests related to
+      themselves.
+
+      Used by an application to fetch information about a user using their JWT.
+      """
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def AppGetApp(self, request, context):
+      """An application can get info about itself.
+      """
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def AppUpdateApp(self, request, context):
+      """Allows an application to provide information about its available permissions.
+      Those permissions can then be given to groups and therefore users.
+      """
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def ListApps(self, request, context):
+      """Service administration endpoints. These require a user JWT to be provided as a GRPC metadata
+      key, "authorization". If using REST this can be provided with the header "Grpc-Metadata-Authorization".
+
+
+      Applications
+
+
+      """
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetApp(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def CreateApp(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def PutApp(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def DeleteApp(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetAppMembers(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def ListGroups(self, request, context):
+      """
+      Groups
+
+
+      """
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetGroup(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def CreateGroup(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def PutGroup(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def DeleteGroup(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetGroupMembers(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def ListUsers(self, request, context):
+      """
+      Users
+
+
+      """
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetUser(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def CreateUser(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def PutUser(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def DeleteUser(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def ResetUserPassword(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+
+
+  class BetaEssenceAuthStub(object):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This class was generated
+    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def AppGetUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      """Application endpoints. These are for applications to perform requests related to
+      themselves.
+
+      Used by an application to fetch information about a user using their JWT.
+      """
+      raise NotImplementedError()
+    AppGetUser.future = None
+    def AppGetApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      """An application can get info about itself.
+      """
+      raise NotImplementedError()
+    AppGetApp.future = None
+    def AppUpdateApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      """Allows an application to provide information about its available permissions.
+      Those permissions can then be given to groups and therefore users.
+      """
+      raise NotImplementedError()
+    AppUpdateApp.future = None
+    def ListApps(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      """Service administration endpoints. These require a user JWT to be provided as a GRPC metadata
+      key, "authorization". If using REST this can be provided with the header "Grpc-Metadata-Authorization".
+
+
+      Applications
+
+
+      """
+      raise NotImplementedError()
+    ListApps.future = None
+    def GetApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetApp.future = None
+    def CreateApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    CreateApp.future = None
+    def PutApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    PutApp.future = None
+    def DeleteApp(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    DeleteApp.future = None
+    def GetAppMembers(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetAppMembers.future = None
+    def ListGroups(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      """
+      Groups
+
+
+      """
+      raise NotImplementedError()
+    ListGroups.future = None
+    def GetGroup(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetGroup.future = None
+    def CreateGroup(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    CreateGroup.future = None
+    def PutGroup(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    PutGroup.future = None
+    def DeleteGroup(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    DeleteGroup.future = None
+    def GetGroupMembers(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetGroupMembers.future = None
+    def ListUsers(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      """
+      Users
+
+
+      """
+      raise NotImplementedError()
+    ListUsers.future = None
+    def GetUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetUser.future = None
+    def CreateUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    CreateUser.future = None
+    def PutUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    PutUser.future = None
+    def DeleteUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    DeleteUser.future = None
+    def ResetUserPassword(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    ResetUserPassword.future = None
+
+
+  def beta_create_EssenceAuth_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This function was
+    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
+    request_deserializers = {
+      ('essenceauth.EssenceAuth', 'AppGetApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'AppGetUser'): AppUserRequest.FromString,
+      ('essenceauth.EssenceAuth', 'AppUpdateApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'CreateApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'CreateGroup'): Group.FromString,
+      ('essenceauth.EssenceAuth', 'CreateUser'): UserChange.FromString,
+      ('essenceauth.EssenceAuth', 'DeleteApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'DeleteGroup'): Group.FromString,
+      ('essenceauth.EssenceAuth', 'DeleteUser'): User.FromString,
+      ('essenceauth.EssenceAuth', 'GetApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'GetAppMembers'): App.FromString,
+      ('essenceauth.EssenceAuth', 'GetGroup'): Group.FromString,
+      ('essenceauth.EssenceAuth', 'GetGroupMembers'): Group.FromString,
+      ('essenceauth.EssenceAuth', 'GetUser'): User.FromString,
+      ('essenceauth.EssenceAuth', 'ListApps'): Empty.FromString,
+      ('essenceauth.EssenceAuth', 'ListGroups'): Empty.FromString,
+      ('essenceauth.EssenceAuth', 'ListUsers'): Empty.FromString,
+      ('essenceauth.EssenceAuth', 'PutApp'): AppChange.FromString,
+      ('essenceauth.EssenceAuth', 'PutGroup'): GroupChange.FromString,
+      ('essenceauth.EssenceAuth', 'PutUser'): UserChange.FromString,
+      ('essenceauth.EssenceAuth', 'ResetUserPassword'): User.FromString,
+    }
+    response_serializers = {
+      ('essenceauth.EssenceAuth', 'AppGetApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'AppGetUser'): User.SerializeToString,
+      ('essenceauth.EssenceAuth', 'AppUpdateApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'CreateApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'CreateGroup'): Group.SerializeToString,
+      ('essenceauth.EssenceAuth', 'CreateUser'): User.SerializeToString,
+      ('essenceauth.EssenceAuth', 'DeleteApp'): Empty.SerializeToString,
+      ('essenceauth.EssenceAuth', 'DeleteGroup'): Empty.SerializeToString,
+      ('essenceauth.EssenceAuth', 'DeleteUser'): Empty.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetAppMembers'): Membership.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetGroup'): Group.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetGroupMembers'): Membership.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetUser'): User.SerializeToString,
+      ('essenceauth.EssenceAuth', 'ListApps'): AppList.SerializeToString,
+      ('essenceauth.EssenceAuth', 'ListGroups'): GroupList.SerializeToString,
+      ('essenceauth.EssenceAuth', 'ListUsers'): UserList.SerializeToString,
+      ('essenceauth.EssenceAuth', 'PutApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'PutGroup'): Group.SerializeToString,
+      ('essenceauth.EssenceAuth', 'PutUser'): User.SerializeToString,
+      ('essenceauth.EssenceAuth', 'ResetUserPassword'): UserChange.SerializeToString,
+    }
+    method_implementations = {
+      ('essenceauth.EssenceAuth', 'AppGetApp'): face_utilities.unary_unary_inline(servicer.AppGetApp),
+      ('essenceauth.EssenceAuth', 'AppGetUser'): face_utilities.unary_unary_inline(servicer.AppGetUser),
+      ('essenceauth.EssenceAuth', 'AppUpdateApp'): face_utilities.unary_unary_inline(servicer.AppUpdateApp),
+      ('essenceauth.EssenceAuth', 'CreateApp'): face_utilities.unary_unary_inline(servicer.CreateApp),
+      ('essenceauth.EssenceAuth', 'CreateGroup'): face_utilities.unary_unary_inline(servicer.CreateGroup),
+      ('essenceauth.EssenceAuth', 'CreateUser'): face_utilities.unary_unary_inline(servicer.CreateUser),
+      ('essenceauth.EssenceAuth', 'DeleteApp'): face_utilities.unary_unary_inline(servicer.DeleteApp),
+      ('essenceauth.EssenceAuth', 'DeleteGroup'): face_utilities.unary_unary_inline(servicer.DeleteGroup),
+      ('essenceauth.EssenceAuth', 'DeleteUser'): face_utilities.unary_unary_inline(servicer.DeleteUser),
+      ('essenceauth.EssenceAuth', 'GetApp'): face_utilities.unary_unary_inline(servicer.GetApp),
+      ('essenceauth.EssenceAuth', 'GetAppMembers'): face_utilities.unary_unary_inline(servicer.GetAppMembers),
+      ('essenceauth.EssenceAuth', 'GetGroup'): face_utilities.unary_unary_inline(servicer.GetGroup),
+      ('essenceauth.EssenceAuth', 'GetGroupMembers'): face_utilities.unary_unary_inline(servicer.GetGroupMembers),
+      ('essenceauth.EssenceAuth', 'GetUser'): face_utilities.unary_unary_inline(servicer.GetUser),
+      ('essenceauth.EssenceAuth', 'ListApps'): face_utilities.unary_unary_inline(servicer.ListApps),
+      ('essenceauth.EssenceAuth', 'ListGroups'): face_utilities.unary_unary_inline(servicer.ListGroups),
+      ('essenceauth.EssenceAuth', 'ListUsers'): face_utilities.unary_unary_inline(servicer.ListUsers),
+      ('essenceauth.EssenceAuth', 'PutApp'): face_utilities.unary_unary_inline(servicer.PutApp),
+      ('essenceauth.EssenceAuth', 'PutGroup'): face_utilities.unary_unary_inline(servicer.PutGroup),
+      ('essenceauth.EssenceAuth', 'PutUser'): face_utilities.unary_unary_inline(servicer.PutUser),
+      ('essenceauth.EssenceAuth', 'ResetUserPassword'): face_utilities.unary_unary_inline(servicer.ResetUserPassword),
+    }
+    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
+    return beta_implementations.server(method_implementations, options=server_options)
+
+
+  def beta_create_EssenceAuth_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This function was
+    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
+    request_serializers = {
+      ('essenceauth.EssenceAuth', 'AppGetApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'AppGetUser'): AppUserRequest.SerializeToString,
+      ('essenceauth.EssenceAuth', 'AppUpdateApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'CreateApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'CreateGroup'): Group.SerializeToString,
+      ('essenceauth.EssenceAuth', 'CreateUser'): UserChange.SerializeToString,
+      ('essenceauth.EssenceAuth', 'DeleteApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'DeleteGroup'): Group.SerializeToString,
+      ('essenceauth.EssenceAuth', 'DeleteUser'): User.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetApp'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetAppMembers'): App.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetGroup'): Group.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetGroupMembers'): Group.SerializeToString,
+      ('essenceauth.EssenceAuth', 'GetUser'): User.SerializeToString,
+      ('essenceauth.EssenceAuth', 'ListApps'): Empty.SerializeToString,
+      ('essenceauth.EssenceAuth', 'ListGroups'): Empty.SerializeToString,
+      ('essenceauth.EssenceAuth', 'ListUsers'): Empty.SerializeToString,
+      ('essenceauth.EssenceAuth', 'PutApp'): AppChange.SerializeToString,
+      ('essenceauth.EssenceAuth', 'PutGroup'): GroupChange.SerializeToString,
+      ('essenceauth.EssenceAuth', 'PutUser'): UserChange.SerializeToString,
+      ('essenceauth.EssenceAuth', 'ResetUserPassword'): User.SerializeToString,
+    }
+    response_deserializers = {
+      ('essenceauth.EssenceAuth', 'AppGetApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'AppGetUser'): User.FromString,
+      ('essenceauth.EssenceAuth', 'AppUpdateApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'CreateApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'CreateGroup'): Group.FromString,
+      ('essenceauth.EssenceAuth', 'CreateUser'): User.FromString,
+      ('essenceauth.EssenceAuth', 'DeleteApp'): Empty.FromString,
+      ('essenceauth.EssenceAuth', 'DeleteGroup'): Empty.FromString,
+      ('essenceauth.EssenceAuth', 'DeleteUser'): Empty.FromString,
+      ('essenceauth.EssenceAuth', 'GetApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'GetAppMembers'): Membership.FromString,
+      ('essenceauth.EssenceAuth', 'GetGroup'): Group.FromString,
+      ('essenceauth.EssenceAuth', 'GetGroupMembers'): Membership.FromString,
+      ('essenceauth.EssenceAuth', 'GetUser'): User.FromString,
+      ('essenceauth.EssenceAuth', 'ListApps'): AppList.FromString,
+      ('essenceauth.EssenceAuth', 'ListGroups'): GroupList.FromString,
+      ('essenceauth.EssenceAuth', 'ListUsers'): UserList.FromString,
+      ('essenceauth.EssenceAuth', 'PutApp'): App.FromString,
+      ('essenceauth.EssenceAuth', 'PutGroup'): Group.FromString,
+      ('essenceauth.EssenceAuth', 'PutUser'): User.FromString,
+      ('essenceauth.EssenceAuth', 'ResetUserPassword'): UserChange.FromString,
+    }
+    cardinalities = {
+      'AppGetApp': cardinality.Cardinality.UNARY_UNARY,
+      'AppGetUser': cardinality.Cardinality.UNARY_UNARY,
+      'AppUpdateApp': cardinality.Cardinality.UNARY_UNARY,
+      'CreateApp': cardinality.Cardinality.UNARY_UNARY,
+      'CreateGroup': cardinality.Cardinality.UNARY_UNARY,
+      'CreateUser': cardinality.Cardinality.UNARY_UNARY,
+      'DeleteApp': cardinality.Cardinality.UNARY_UNARY,
+      'DeleteGroup': cardinality.Cardinality.UNARY_UNARY,
+      'DeleteUser': cardinality.Cardinality.UNARY_UNARY,
+      'GetApp': cardinality.Cardinality.UNARY_UNARY,
+      'GetAppMembers': cardinality.Cardinality.UNARY_UNARY,
+      'GetGroup': cardinality.Cardinality.UNARY_UNARY,
+      'GetGroupMembers': cardinality.Cardinality.UNARY_UNARY,
+      'GetUser': cardinality.Cardinality.UNARY_UNARY,
+      'ListApps': cardinality.Cardinality.UNARY_UNARY,
+      'ListGroups': cardinality.Cardinality.UNARY_UNARY,
+      'ListUsers': cardinality.Cardinality.UNARY_UNARY,
+      'PutApp': cardinality.Cardinality.UNARY_UNARY,
+      'PutGroup': cardinality.Cardinality.UNARY_UNARY,
+      'PutUser': cardinality.Cardinality.UNARY_UNARY,
+      'ResetUserPassword': cardinality.Cardinality.UNARY_UNARY,
+    }
+    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
+    return beta_implementations.dynamic_stub(channel, 'essenceauth.EssenceAuth', cardinalities, options=stub_options)
+except ImportError:
+  pass
 # @@protoc_insertion_point(module_scope)
