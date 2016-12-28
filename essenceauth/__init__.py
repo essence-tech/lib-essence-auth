@@ -39,4 +39,7 @@ def gen_app_user_request(app_id, app_keys, cookies):
     except KeyError:
         raise AuthException('Unauthorized user', 401)
 
+    if not isinstance(app_keys, list):
+        app_keys = [app_keys]
+
     return AppUserRequest(ID=app_id, Keys=app_keys, JWT=jwt)
