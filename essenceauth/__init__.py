@@ -8,9 +8,9 @@ from auth_pb2 import (EssenceAuthStub, Empty, App, AppList, AppChange,
                       UserList, UserChange)
 
 
-__all__ = ['get_client', 'gen_app_user_request', 'Empty', 'App',
-           'AppList', 'AppChange', 'AppUserRequest', 'Membership',
-           'Group', 'GroupList', 'GroupChange', 'Permission',
+__all__ = ['get_client', 'gen_app_user_request', 'user_has_permission',
+           'Empty', 'App', 'AppList', 'AppChange', 'AppUserRequest',
+           'Membership', 'Group', 'GroupList', 'GroupChange', 'Permission',
            'PermissionValue', 'User', 'UserList', 'UserChange']
 
 
@@ -43,3 +43,16 @@ def gen_app_user_request(app_id, app_keys, cookies):
         app_keys = [app_keys]
 
     return AppUserRequest(ID=app_id, Keys=app_keys, JWT=jwt)
+
+
+def user_has_permission(user, app_id, perm_id):
+    """Test a user for a specific permission."""
+    for app in user.Apps:
+        if app.ID != app_id:
+            continue
+
+        for perm in app.Permissions:
+            if perm.ID == perm_id:
+                return True
+
+    return False
