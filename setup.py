@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 
+import sys
+
 from distutils.core import setup
+
+print sys.executable
 
 setup(
     name='Essence Auth',
@@ -9,6 +13,6 @@ setup(
     author='Josh Fyne',
     author_email='josh.fyne@essencedigital.com',
     url='https://github.com/essence-tech/lib-essence-auth',
-    packages=['essenceauth'],
+    packages=['essenceauth', 'google.api'],
     install_requires=['grpcio', 'protobuf'],
     )
