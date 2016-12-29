@@ -1,7 +1,7 @@
-default: interface
+default: codegen
 
-.phony: interface
-interface:
+.phony: codegen
+codegen:
 	protoc \
 		-I. \
 		-I/usr/local/lib \
