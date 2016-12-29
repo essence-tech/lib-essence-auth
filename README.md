@@ -1,5 +1,5 @@
 # lib-essence-auth
-Clients for the Essence auth service
+Clients for the Essence auth service. Client code can be generated using the Makefile.
 
 ## Go
 
