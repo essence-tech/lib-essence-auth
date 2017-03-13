@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/essence-tech/lib-essence-auth/essenceauth"
+	"gopkg.in/essence-tech/lib-essence-auth.v2/essenceauth"
 )
 
 var values = []*essenceauth.PermissionValue{

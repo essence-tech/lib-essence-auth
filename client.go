@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/essence-tech/lib-essence-auth/essenceauth"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
+	"gopkg.in/essence-tech/lib-essence-auth.v2/essenceauth"
 )
 
 // Service provides access to auth.
