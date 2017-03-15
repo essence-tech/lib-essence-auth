@@ -7,8 +7,8 @@ Clients for the Essence auth service. Client code can be generated using the Mak
 import (
     "net/http"
 
-    "github.com/essence-tech/lib-essence-auth"
-    "github.com/essence-tech/lib-essence-auth/essenceauth"
+    "gopkg.in/essence-tech/lib-essence-auth.v2"
+    "gopkg.in/essence-tech/lib-essence-auth.v2/essenceauth"
     "golang.org/x/net/context"
 )
 
@@ -30,7 +30,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 ## Python
 Install from pip with
 ```
-pip install git+git://github.com/essence-tech/lib-essence-auth.git@master
+pip install git+git://github.com/essence-tech/lib-essence-auth.git@grpc-auth
 ```
 
 ```python
