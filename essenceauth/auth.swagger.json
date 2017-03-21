@@ -1,0 +1,852 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "auth.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v2/a/apps": {
+      "get": {
+        "operationId": "ListApps",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthAppList"
+            }
+          }
+        },
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "post": {
+        "operationId": "CreateApp",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthApp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthApp"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/a/apps/{ID}": {
+      "get": {
+        "operationId": "GetApp",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthApp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Key",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteApp",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "put": {
+        "operationId": "PutApp",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthApp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthAppChange"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/a/apps/{ID}/members": {
+      "get": {
+        "operationId": "GetAppMembers",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthMembership"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Key",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/a/groups": {
+      "get": {
+        "operationId": "ListGroups",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthGroupList"
+            }
+          }
+        },
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "post": {
+        "operationId": "CreateGroup",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthGroup"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthGroup"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/a/groups/{ID}": {
+      "get": {
+        "operationId": "GetGroup",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthGroup"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Auto",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
+            "name": "Owner",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteGroup",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "put": {
+        "operationId": "PutGroup",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthGroup"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthGroupChange"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/a/groups/{ID}/members": {
+      "get": {
+        "operationId": "GetGroupMembers",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthMembership"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Auto",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
+            "name": "Owner",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/a/users": {
+      "get": {
+        "operationId": "ListUsers",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthUserList"
+            }
+          }
+        },
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "post": {
+        "operationId": "CreateUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthUserChange"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/a/users/{Email}": {
+      "get": {
+        "operationId": "GetUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Picture",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Admin",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "put": {
+        "operationId": "PutUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthUserChange"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/a/users/{Email}/reset": {
+      "post": {
+        "operationId": "ResetUserPassword",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthUserChange"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/apps/{ID}": {
+      "get": {
+        "summary": "An application can get info about itself.",
+        "operationId": "AppGetApp",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthApp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Key",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      },
+      "post": {
+        "summary": "Allows an application to provide information about its available permissions.\nThose permissions can then be given to groups and therefore users.",
+        "operationId": "AppUpdateApp",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthApp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthApp"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
+    "/api/v2/user": {
+      "post": {
+        "summary": "Used by an application to fetch information about a user using their JWT.",
+        "operationId": "AppGetUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthAppUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "essenceauthApp": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "Key": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/essenceauthPermission"
+          }
+        }
+      }
+    },
+    "essenceauthAppChange": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "AppChange is used to update an applications name and admins."
+    },
+    "essenceauthAppList": {
+      "type": "object",
+      "properties": {
+        "Apps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/essenceauthApp"
+          }
+        }
+      }
+    },
+    "essenceauthAppUserRequest": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "Keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "JWT": {
+          "type": "string"
+        }
+      },
+      "description": "AppUserRequest is used to fetch info about a user by an application."
+    },
+    "essenceauthEmpty": {
+      "type": "object"
+    },
+    "essenceauthGroup": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Auto": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "Owner": {
+          "type": "string"
+        },
+        "Apps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/essenceauthApp"
+          }
+        }
+      }
+    },
+    "essenceauthGroupChange": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Auto": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "Members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Apps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/essenceauthApp"
+          }
+        }
+      },
+      "description": "GroupChange is used to update a groups name, auto status, memebers and application permissions."
+    },
+    "essenceauthGroupList": {
+      "type": "object",
+      "properties": {
+        "Groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/essenceauthGroup"
+          }
+        }
+      }
+    },
+    "essenceauthMembership": {
+      "type": "object",
+      "properties": {
+        "Members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Outsiders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Membership provides a list of members and outdsiders for an App or Group."
+    },
+    "essenceauthPermission": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/essenceauthPermissionValue"
+          }
+        }
+      }
+    },
+    "essenceauthPermissionValue": {
+      "type": "object",
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "essenceauthUser": {
+      "type": "object",
+      "properties": {
+        "Email": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Picture": {
+          "type": "string"
+        },
+        "Admin": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "Apps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/essenceauthApp"
+          }
+        }
+      }
+    },
+    "essenceauthUserChange": {
+      "type": "object",
+      "properties": {
+        "Email": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Password": {
+          "type": "string"
+        }
+      },
+      "description": "A user change request or response."
+    },
+    "essenceauthUserList": {
+      "type": "object",
+      "properties": {
+        "Users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/essenceauthUser"
+          }
+        }
+      }
+    }
+  }
+}

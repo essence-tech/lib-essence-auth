@@ -1,0 +1,11 @@
+build:
+  go:
+    image: golang
+    commands:
+      - go get -t -d
+      - go test -cover ./...
+  python:
+    image: python:2
+    commands:
+      - pip install .
+      - python client_test.py

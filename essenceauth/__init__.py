@@ -1,9 +1,17 @@
-import requests
-import json
+"""Provide client for the Auth service."""
 
-import logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+import grpc
+
+from auth_pb2 import (EssenceAuthStub, Empty, App, AppList, AppChange,
+                      AppUserRequest, Membership, Group, GroupList,
+                      GroupChange, Permission, PermissionValue, User,
+                      UserList, UserChange)
+
+
+__all__ = ['get_client', 'gen_app_user_request', 'user_has_permission',
+           'Empty', 'App', 'AppList', 'AppChange', 'AppUserRequest',
+           'Membership', 'Group', 'GroupList', 'GroupChange', 'Permission',
+           'PermissionValue', 'User', 'UserList', 'UserChange']
 
 
 class AuthException(Exception):
@@ -12,115 +20,39 @@ class AuthException(Exception):
         self.code = code
 
 
-class App(object):
-    ''' Represents the application
-    '''
-    def __init__(self, host, id, key):
-        self.host = host
-        self.id = id
-        self.key = key
-        self.user = None
-
-    def get_user(self, cookies, sibling_keys=None):
-        ''' Returns a user object by using the users
-            cookies. Throws on authentication error
-        '''
-        if self.user is not None:
-            return self.user
-
-        # cookies is expected to be a dict
-        try:
-            cookie = {'essence_auth': cookies['essence_auth']}
-        except KeyError:
-            raise AuthException('Unauthorized user', 401)
-
-        # Gather all keys
-        keys = sibling_keys.append(self.key) if sibling_keys is not None else self.key
-        query_string = {'key': keys}
-        logging.debug(query_string)
-
-        response = requests.get('{}/me2'.format(self.host), params=query_string, cookies=cookie)
-        try:
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as err:
-            raise AuthException('Unauthorized user', err.response.status_code)
-
-        user = User(self, response.json())
-        self.user = user
-        return user
-
-    def set_permissions(self, *permissions):
-        data = json.dumps(permissions, cls=PermissionEncoder)
-        response = requests.post(
-            '{}/api/v1/apps/{}'.format(self.host, self.id),
-            params={'key': self.key},
-            data=data,
-            allow_redirects=False)
-        response.raise_for_status()
-
-        if response.status_code != 200:
-            raise AuthException('Something went wrong. Check URL', response.status_code)
+def get_client(address):
+    """Get an auth serivce client."""
+    channel = grpc.insecure_channel(address)
+    stub = EssenceAuthStub(channel)
+    return stub
 
 
+def gen_app_user_request(app_id, app_keys, cookies):
+    """Helper function do generate an application user request.
 
-class Permission(object):
-    ''' An application permission
-    '''
-    def __init__(self, id, name, values):
-        self.id = id
-        self.name = name
-        self.values = values
+    Needs and application ID, the application keys and a cookie
+    dictionary from a user request.
+    """
+    # cookies is expected to be a dict
+    try:
+        jwt = cookies['ea']
+    except KeyError:
+        raise AuthException('Unauthorized user', 401)
 
-    @staticmethod
-    def from_api(api_response):
-        try:
-            values = api_response['values']
-        except KeyError:
-            values = None
+    if not isinstance(app_keys, list):
+        app_keys = [app_keys]
 
-        return Permission(
-            api_response['id'],
-            api_response['name'],
-            values)
+    return AppUserRequest(ID=app_id, Keys=app_keys, JWT=jwt)
 
 
-class PermissionEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, Permission):
-            return o.__dict__
-        return super(PermissionEncoder, self).default(o)
+def user_has_permission(user, app_id, perm_id):
+    """Test a user for a specific permission."""
+    for app in user.Apps:
+        if app.ID != app_id:
+            continue
 
-
-class User(object):
-    ''' Representation of a user from the auth service
-    '''
-    def __init__(self, host_app, api_response):
-        self.name = api_response['name']
-        self.email = api_response['email']
-        self.permissions = []
-
-        for app in api_response['apps']:
-            if app['id'] == host_app.id:
-                try:
-                    self.permissions.extend([Permission.from_api(perm) for perm in app['permissions']])
-                except KeyError as err:
-                    logging.error(err)
-                    logging.warning('User: No permissions for app {}'.format(host_app.id))
-                    self.permissions = None
-                    continue
-
-        try:
-            self.picture = api_response['picture']
-        except KeyError:
-            self.picture = None
-
-    def has_permission(self, id):
-        if self.permissions is None:
-            return False
-
-        for perm in self.permissions:
-            if perm.id == id:
+        for perm in app.Permissions:
+            if perm.ID == perm_id:
                 return True
 
-        return False
-
+    return False
