@@ -41,4 +41,14 @@ client = essenceauth.get_client('host_addr:port')
 
 req = essenceauth.gen_app_user_request('app-id', 'app-key', dict_of_cookies')
 user = client.AppGetUser(req)
+
+# Mosts other calls require a JWT token..
+client.ListApps(essenceauth.Empty(), metadata=[(b'authorization', b'your.jwt.token')])
+
+# or for example
+response = client.ListUsers(essenceauth.Empty(), metadata=[(b'authorization', b'your.jwt.token')])
+
+for u in response.Users:
+    print(u)
+
 ```
