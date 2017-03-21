@@ -193,6 +193,8 @@ message GroupList {
     repeated Group Groups = 1;
 }
 
+
+// GroupChange is used to update a groups name, auto status, memebers and application permissions.
 message GroupChange {
     int32 ID = 1;
     string Name = 2;
