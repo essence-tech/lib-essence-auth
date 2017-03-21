@@ -266,6 +266,7 @@ func (m *GroupList) GetGroups() []*Group {
 	return nil
 }
 
+// GroupChange is used to update a groups name, auto status, memebers and application permissions.
 type GroupChange struct {
 	ID      int32    `protobuf:"varint,1,opt,name=ID,json=iD" json:"ID,omitempty"`
 	Name    string   `protobuf:"bytes,2,opt,name=Name,json=name" json:"Name,omitempty"`

@@ -34,3 +34,8 @@ codegen:
 		-I$$GOPATH/src/github.com/googleapis/googleapis \
 		--grpc-gateway_out=logtostderr=true:essenceauth \
 		auth.proto
+	protoc -I/usr/local/include -I. \
+		-I$$GOPATH/src \
+		-I$$GOPATH/src/github.com/googleapis/googleapis \
+		--swagger_out=logtostderr=true:essenceauth \
+		auth.proto
