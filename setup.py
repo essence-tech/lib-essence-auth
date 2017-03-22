@@ -8,7 +8,7 @@ print sys.executable
 
 setup(
     name='Essence Auth',
-    version='0.3',
+    version='2.0.4',
     description='Library for the Essence authentication service.',
     author='Josh Fyne',
     author_email='josh.fyne@essencedigital.com',
