@@ -2,7 +2,7 @@
 
 import grpc
 
-from auth_pb2 import (EssenceAuthStub, Empty, App, AppList, AppChange,
+from essenceauth.auth_pb2 import (EssenceAuthStub, Empty, App, AppList, AppChange,
                       AppUserRequest, Membership, Group, GroupList,
                       GroupChange, Permission, PermissionValue, User,
                       UserList, UserChange)
