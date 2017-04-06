@@ -61,6 +61,18 @@ class App(object):
         if response.status_code != 200:
             raise AuthException('Something went wrong. Check URL', response.status_code)
 
+    @property
+    def permissions(self):
+        response = requests.get(
+            '{}/api/v1/apps/{}'.format(self.host, self.id),
+            params={'key': self.key},
+            allow_redirects=False)
+
+        if response.status_code != 200:
+            raise AuthException('Something went wrong. Check URL', response.status_code)
+
+        json_data = response.json()
+        return json_data['results']['permissions']
 
 
 class Permission(object):
