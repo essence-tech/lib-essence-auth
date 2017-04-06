@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 
-import sys
-
 from distutils.core import setup
 
-print sys.executable
 
 setup(
     name='Essence Auth',
