@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='auth.proto',
   package='essenceauth',
   syntax='proto3',
-  serialized_pb=_b('\n\nauth.proto\x12\x0b\x65ssenceauth\x1a\x1cgoogle/api/annotations.proto\"\x07\n\x05\x45mpty\"Z\n\x03\x41pp\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0b\n\x03Key\x18\x02 \x01(\t\x12\x0c\n\x04Name\x18\x03 \x01(\t\x12,\n\x0bPermissions\x18\x04 \x03(\x0b\x32\x17.essenceauth.Permission\")\n\x07\x41ppList\x12\x1e\n\x04\x41pps\x18\x01 \x03(\x0b\x32\x10.essenceauth.App\"6\n\tAppChange\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x0f\n\x07Members\x18\x03 \x03(\t\"7\n\x0e\x41ppUserRequest\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04Keys\x18\x02 \x03(\t\x12\x0b\n\x03JWT\x18\x03 \x01(\t\"0\n\nMembership\x12\x0f\n\x07Members\x18\x01 \x03(\t\x12\x11\n\tOutsiders\x18\x02 \x03(\t\"^\n\x05Group\x12\n\n\x02ID\x18\x01 \x01(\x05\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x0c\n\x04\x41uto\x18\x03 \x01(\x08\x12\r\n\x05Owner\x18\x04 \x01(\t\x12\x1e\n\x04\x41pps\x18\x05 \x03(\x0b\x32\x10.essenceauth.App\"/\n\tGroupList\x12\"\n\x06Groups\x18\x01 \x03(\x0b\x32\x12.essenceauth.Group\"f\n\x0bGroupChange\x12\n\n\x02ID\x18\x01 \x01(\x05\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x0c\n\x04\x41uto\x18\x03 \x01(\x08\x12\x0f\n\x07Members\x18\x04 \x03(\t\x12\x1e\n\x04\x41pps\x18\x05 \x03(\x0b\x32\x10.essenceauth.App\"T\n\nPermission\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12,\n\x06Values\x18\x03 \x03(\x0b\x32\x1c.essenceauth.PermissionValue\"-\n\x0fPermissionValue\x12\x0b\n\x03Key\x18\x01 \x01(\t\x12\r\n\x05Value\x18\x02 \x01(\t\"c\n\x04User\x12\r\n\x05\x45mail\x18\x01 \x01(\t\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x0f\n\x07Picture\x18\x03 \x01(\t\x12\r\n\x05\x41\x64min\x18\x04 \x01(\x08\x12\x1e\n\x04\x41pps\x18\x05 \x03(\x0b\x32\x10.essenceauth.App\",\n\x08UserList\x12 \n\x05Users\x18\x01 \x03(\x0b\x32\x11.essenceauth.User\";\n\nUserChange\x12\r\n\x05\x45mail\x18\x01 \x01(\t\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x10\n\x08Password\x18\x03 \x01(\t2\x92\x0e\n\x0b\x45ssenceAuth\x12U\n\nAppGetUser\x12\x1b.essenceauth.AppUserRequest\x1a\x11.essenceauth.User\"\x17\x82\xd3\xe4\x93\x02\x11\"\x0c/api/v2/user:\x01*\x12J\n\tAppGetApp\x12\x10.essenceauth.App\x1a\x10.essenceauth.App\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/v2/apps/{ID}\x12P\n\x0c\x41ppUpdateApp\x12\x10.essenceauth.App\x1a\x10.essenceauth.App\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/api/v2/apps/{ID}:\x01*\x12L\n\x08ListApps\x12\x12.essenceauth.Empty\x1a\x14.essenceauth.AppList\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/api/v2/a/apps\x12I\n\x06GetApp\x12\x10.essenceauth.App\x1a\x10.essenceauth.App\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/api/v2/a/apps/{ID}\x12J\n\tCreateApp\x12\x10.essenceauth.App\x1a\x10.essenceauth.App\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/api/v2/a/apps:\x01*\x12R\n\x06PutApp\x12\x16.essenceauth.AppChange\x1a\x10.essenceauth.App\"\x1e\x82\xd3\xe4\x93\x02\x18\x1a\x13/api/v2/a/apps/{ID}:\x01*\x12N\n\tDeleteApp\x12\x10.essenceauth.App\x1a\x12.essenceauth.Empty\"\x1b\x82\xd3\xe4\x93\x02\x15*\x13/api/v2/a/apps/{ID}\x12_\n\rGetAppMembers\x12\x10.essenceauth.App\x1a\x17.essenceauth.Membership\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v2/a/apps/{ID}/members\x12R\n\nListGroups\x12\x12.essenceauth.Empty\x1a\x16.essenceauth.GroupList\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v2/a/groups\x12Q\n\x08GetGroup\x12\x12.essenceauth.Group\x1a\x12.essenceauth.Group\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v2/a/groups/{ID}\x12R\n\x0b\x43reateGroup\x12\x12.essenceauth.Group\x1a\x12.essenceauth.Group\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/api/v2/a/groups:\x01*\x12Z\n\x08PutGroup\x12\x18.essenceauth.GroupChange\x1a\x12.essenceauth.Group\" \x82\xd3\xe4\x93\x02\x1a\x1a\x15/api/v2/a/groups/{ID}:\x01*\x12T\n\x0b\x44\x65leteGroup\x12\x12.essenceauth.Group\x1a\x12.essenceauth.Empty\"\x1d\x82\xd3\xe4\x93\x02\x17*\x15/api/v2/a/groups/{ID}\x12\x65\n\x0fGetGroupMembers\x12\x12.essenceauth.Group\x1a\x17.essenceauth.Membership\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v2/a/groups/{ID}/members\x12O\n\tListUsers\x12\x12.essenceauth.Empty\x1a\x15.essenceauth.UserList\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/api/v2/a/users\x12P\n\x07GetUser\x12\x11.essenceauth.User\x1a\x11.essenceauth.User\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/api/v2/a/users/{Email}\x12T\n\nCreateUser\x12\x17.essenceauth.UserChange\x1a\x11.essenceauth.User\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/api/v2/a/users:\x01*\x12Y\n\x07PutUser\x12\x17.essenceauth.UserChange\x1a\x11.essenceauth.User\"\"\x82\xd3\xe4\x93\x02\x1c\x1a\x17/api/v2/a/users/{Email}:\x01*\x12T\n\nDeleteUser\x12\x11.essenceauth.User\x1a\x12.essenceauth.Empty\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/api/v2/a/users/{Email}\x12\x66\n\x11ResetUserPassword\x12\x11.essenceauth.User\x1a\x17.essenceauth.UserChange\"%\x82\xd3\xe4\x93\x02\x1f\"\x1d/api/v2/a/users/{Email}/resetb\x06proto3')
+  serialized_pb=_b('\n\nauth.proto\x12\x0b\x65ssenceauth\x1a\x1cgoogle/api/annotations.proto\"\x07\n\x05\x45mpty\"\x16\n\x05Token\x12\r\n\x05Token\x18\x01 \x01(\t\"\'\n\x0cLoginRequest\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0b\n\x03Key\x18\x02 \x01(\t\"Z\n\x03\x41pp\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0b\n\x03Key\x18\x02 \x01(\t\x12\x0c\n\x04Name\x18\x03 \x01(\t\x12,\n\x0bPermissions\x18\x04 \x03(\x0b\x32\x17.essenceauth.Permission\")\n\x07\x41ppList\x12\x1e\n\x04\x41pps\x18\x01 \x03(\x0b\x32\x10.essenceauth.App\"6\n\tAppChange\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x0f\n\x07Members\x18\x03 \x03(\t\"7\n\x0e\x41ppUserRequest\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04Keys\x18\x02 \x03(\t\x12\x0b\n\x03JWT\x18\x03 \x01(\t\"0\n\nMembership\x12\x0f\n\x07Members\x18\x01 \x03(\t\x12\x11\n\tOutsiders\x18\x02 \x03(\t\"^\n\x05Group\x12\n\n\x02ID\x18\x01 \x01(\x05\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x0c\n\x04\x41uto\x18\x03 \x01(\x08\x12\r\n\x05Owner\x18\x04 \x01(\t\x12\x1e\n\x04\x41pps\x18\x05 \x03(\x0b\x32\x10.essenceauth.App\"/\n\tGroupList\x12\"\n\x06Groups\x18\x01 \x03(\x0b\x32\x12.essenceauth.Group\"f\n\x0bGroupChange\x12\n\n\x02ID\x18\x01 \x01(\x05\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x0c\n\x04\x41uto\x18\x03 \x01(\x08\x12\x0f\n\x07Members\x18\x04 \x03(\t\x12\x1e\n\x04\x41pps\x18\x05 \x03(\x0b\x32\x10.essenceauth.App\"T\n\nPermission\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12,\n\x06Values\x18\x03 \x03(\x0b\x32\x1c.essenceauth.PermissionValue\"-\n\x0fPermissionValue\x12\x0b\n\x03Key\x18\x01 \x01(\t\x12\r\n\x05Value\x18\x02 \x01(\t\"c\n\x04User\x12\r\n\x05\x45mail\x18\x01 \x01(\t\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x0f\n\x07Picture\x18\x03 \x01(\t\x12\r\n\x05\x41\x64min\x18\x04 \x01(\x08\x12\x1e\n\x04\x41pps\x18\x05 \x03(\x0b\x32\x10.essenceauth.App\",\n\x08UserList\x12 \n\x05Users\x18\x01 \x03(\x0b\x32\x11.essenceauth.User\";\n\nUserChange\x12\r\n\x05\x45mail\x18\x01 \x01(\t\x12\x0c\n\x04Name\x18\x02 \x01(\t\x12\x10\n\x08Password\x18\x03 \x01(\t2\xe4\x0e\n\x0b\x45ssenceAuth\x12P\n\x05Login\x12\x19.essenceauth.LoginRequest\x1a\x12.essenceauth.Token\"\x18\x82\xd3\xe4\x93\x02\x12\"\r/api/v2/login:\x01*\x12U\n\nAppGetUser\x12\x1b.essenceauth.AppUserRequest\x1a\x11.essenceauth.User\"\x17\x82\xd3\xe4\x93\x02\x11\"\x0c/api/v2/user:\x01*\x12J\n\tAppGetApp\x12\x10.essenceauth.App\x1a\x10.essenceauth.App\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/v2/apps/{ID}\x12P\n\x0c\x41ppUpdateApp\x12\x10.essenceauth.App\x1a\x10.essenceauth.App\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/api/v2/apps/{ID}:\x01*\x12L\n\x08ListApps\x12\x12.essenceauth.Empty\x1a\x14.essenceauth.AppList\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/api/v2/a/apps\x12I\n\x06GetApp\x12\x10.essenceauth.App\x1a\x10.essenceauth.App\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/api/v2/a/apps/{ID}\x12J\n\tCreateApp\x12\x10.essenceauth.App\x1a\x10.essenceauth.App\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/api/v2/a/apps:\x01*\x12R\n\x06PutApp\x12\x16.essenceauth.AppChange\x1a\x10.essenceauth.App\"\x1e\x82\xd3\xe4\x93\x02\x18\x1a\x13/api/v2/a/apps/{ID}:\x01*\x12N\n\tDeleteApp\x12\x10.essenceauth.App\x1a\x12.essenceauth.Empty\"\x1b\x82\xd3\xe4\x93\x02\x15*\x13/api/v2/a/apps/{ID}\x12_\n\rGetAppMembers\x12\x10.essenceauth.App\x1a\x17.essenceauth.Membership\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v2/a/apps/{ID}/members\x12R\n\nListGroups\x12\x12.essenceauth.Empty\x1a\x16.essenceauth.GroupList\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v2/a/groups\x12Q\n\x08GetGroup\x12\x12.essenceauth.Group\x1a\x12.essenceauth.Group\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v2/a/groups/{ID}\x12R\n\x0b\x43reateGroup\x12\x12.essenceauth.Group\x1a\x12.essenceauth.Group\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/api/v2/a/groups:\x01*\x12Z\n\x08PutGroup\x12\x18.essenceauth.GroupChange\x1a\x12.essenceauth.Group\" \x82\xd3\xe4\x93\x02\x1a\x1a\x15/api/v2/a/groups/{ID}:\x01*\x12T\n\x0b\x44\x65leteGroup\x12\x12.essenceauth.Group\x1a\x12.essenceauth.Empty\"\x1d\x82\xd3\xe4\x93\x02\x17*\x15/api/v2/a/groups/{ID}\x12\x65\n\x0fGetGroupMembers\x12\x12.essenceauth.Group\x1a\x17.essenceauth.Membership\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v2/a/groups/{ID}/members\x12O\n\tListUsers\x12\x12.essenceauth.Empty\x1a\x15.essenceauth.UserList\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/api/v2/a/users\x12P\n\x07GetUser\x12\x11.essenceauth.User\x1a\x11.essenceauth.User\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/api/v2/a/users/{Email}\x12T\n\nCreateUser\x12\x17.essenceauth.UserChange\x1a\x11.essenceauth.User\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/api/v2/a/users:\x01*\x12Y\n\x07PutUser\x12\x17.essenceauth.UserChange\x1a\x11.essenceauth.User\"\"\x82\xd3\xe4\x93\x02\x1c\x1a\x17/api/v2/a/users/{Email}:\x01*\x12T\n\nDeleteUser\x12\x11.essenceauth.User\x1a\x12.essenceauth.Empty\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/api/v2/a/users/{Email}\x12\x66\n\x11ResetUserPassword\x12\x11.essenceauth.User\x1a\x17.essenceauth.UserChange\"%\x82\xd3\xe4\x93\x02\x1f\"\x1d/api/v2/a/users/{Email}/resetb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -49,6 +49,75 @@ _EMPTY = _descriptor.Descriptor(
   ],
   serialized_start=57,
   serialized_end=64,
+)
+
+
+_TOKEN = _descriptor.Descriptor(
+  name='Token',
+  full_name='essenceauth.Token',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Token', full_name='essenceauth.Token.Token', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=66,
+  serialized_end=88,
+)
+
+
+_LOGINREQUEST = _descriptor.Descriptor(
+  name='LoginRequest',
+  full_name='essenceauth.LoginRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ID', full_name='essenceauth.LoginRequest.ID', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='Key', full_name='essenceauth.LoginRequest.Key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=90,
+  serialized_end=129,
 )
 
 
@@ -99,8 +168,8 @@ _APP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=66,
-  serialized_end=156,
+  serialized_start=131,
+  serialized_end=221,
 )
 
 
@@ -130,8 +199,8 @@ _APPLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=158,
-  serialized_end=199,
+  serialized_start=223,
+  serialized_end=264,
 )
 
 
@@ -175,8 +244,8 @@ _APPCHANGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=201,
-  serialized_end=255,
+  serialized_start=266,
+  serialized_end=320,
 )
 
 
@@ -220,8 +289,8 @@ _APPUSERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=257,
-  serialized_end=312,
+  serialized_start=322,
+  serialized_end=377,
 )
 
 
@@ -258,8 +327,8 @@ _MEMBERSHIP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=314,
-  serialized_end=362,
+  serialized_start=379,
+  serialized_end=427,
 )
 
 
@@ -317,8 +386,8 @@ _GROUP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=364,
-  serialized_end=458,
+  serialized_start=429,
+  serialized_end=523,
 )
 
 
@@ -348,8 +417,8 @@ _GROUPLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=460,
-  serialized_end=507,
+  serialized_start=525,
+  serialized_end=572,
 )
 
 
@@ -407,8 +476,8 @@ _GROUPCHANGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=509,
-  serialized_end=611,
+  serialized_start=574,
+  serialized_end=676,
 )
 
 
@@ -452,8 +521,8 @@ _PERMISSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=613,
-  serialized_end=697,
+  serialized_start=678,
+  serialized_end=762,
 )
 
 
@@ -490,8 +559,8 @@ _PERMISSIONVALUE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=699,
-  serialized_end=744,
+  serialized_start=764,
+  serialized_end=809,
 )
 
 
@@ -549,8 +618,8 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=746,
-  serialized_end=845,
+  serialized_start=811,
+  serialized_end=910,
 )
 
 
@@ -580,8 +649,8 @@ _USERLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=847,
-  serialized_end=891,
+  serialized_start=912,
+  serialized_end=956,
 )
 
 
@@ -625,8 +694,8 @@ _USERCHANGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=893,
-  serialized_end=952,
+  serialized_start=958,
+  serialized_end=1017,
 )
 
 _APP.fields_by_name['Permissions'].message_type = _PERMISSION
@@ -638,6 +707,8 @@ _PERMISSION.fields_by_name['Values'].message_type = _PERMISSIONVALUE
 _USER.fields_by_name['Apps'].message_type = _APP
 _USERLIST.fields_by_name['Users'].message_type = _USER
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
+DESCRIPTOR.message_types_by_name['Token'] = _TOKEN
+DESCRIPTOR.message_types_by_name['LoginRequest'] = _LOGINREQUEST
 DESCRIPTOR.message_types_by_name['App'] = _APP
 DESCRIPTOR.message_types_by_name['AppList'] = _APPLIST
 DESCRIPTOR.message_types_by_name['AppChange'] = _APPCHANGE
@@ -658,6 +729,20 @@ Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), d
   # @@protoc_insertion_point(class_scope:essenceauth.Empty)
   ))
 _sym_db.RegisterMessage(Empty)
+
+Token = _reflection.GeneratedProtocolMessageType('Token', (_message.Message,), dict(
+  DESCRIPTOR = _TOKEN,
+  __module__ = 'auth_pb2'
+  # @@protoc_insertion_point(class_scope:essenceauth.Token)
+  ))
+_sym_db.RegisterMessage(Token)
+
+LoginRequest = _reflection.GeneratedProtocolMessageType('LoginRequest', (_message.Message,), dict(
+  DESCRIPTOR = _LOGINREQUEST,
+  __module__ = 'auth_pb2'
+  # @@protoc_insertion_point(class_scope:essenceauth.LoginRequest)
+  ))
+_sym_db.RegisterMessage(LoginRequest)
 
 App = _reflection.GeneratedProtocolMessageType('App', (_message.Message,), dict(
   DESCRIPTOR = _APP,
@@ -769,6 +854,11 @@ try:
       Args:
         channel: A grpc.Channel.
       """
+      self.Login = channel.unary_unary(
+          '/essenceauth.EssenceAuth/Login',
+          request_serializer=LoginRequest.SerializeToString,
+          response_deserializer=Token.FromString,
+          )
       self.AppGetUser = channel.unary_unary(
           '/essenceauth.EssenceAuth/AppGetUser',
           request_serializer=AppUserRequest.SerializeToString,
@@ -877,6 +967,13 @@ try:
 
 
   class EssenceAuthServicer(object):
+
+    def Login(self, request, context):
+      """Login via rest and recieve a token.
+      """
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
 
     def AppGetUser(self, request, context):
       """Application endpoints. These are for applications to perform requests related to
@@ -1014,6 +1111,11 @@ try:
 
   def add_EssenceAuthServicer_to_server(servicer, server):
     rpc_method_handlers = {
+        'Login': grpc.unary_unary_rpc_method_handler(
+            servicer.Login,
+            request_deserializer=LoginRequest.FromString,
+            response_serializer=Token.SerializeToString,
+        ),
         'AppGetUser': grpc.unary_unary_rpc_method_handler(
             servicer.AppGetUser,
             request_deserializer=AppUserRequest.FromString,
@@ -1131,6 +1233,10 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def Login(self, request, context):
+      """Login via rest and recieve a token.
+      """
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def AppGetUser(self, request, context):
       """Application endpoints. These are for applications to perform requests related to
       themselves.
@@ -1209,6 +1315,11 @@ try:
     It is recommended to use the GA API (classes and functions in this
     file not marked beta) for all further purposes. This class was generated
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def Login(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      """Login via rest and recieve a token.
+      """
+      raise NotImplementedError()
+    Login.future = None
     def AppGetUser(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Application endpoints. These are for applications to perform requests related to
       themselves.
@@ -1326,6 +1437,7 @@ try:
       ('essenceauth.EssenceAuth', 'ListApps'): Empty.FromString,
       ('essenceauth.EssenceAuth', 'ListGroups'): Empty.FromString,
       ('essenceauth.EssenceAuth', 'ListUsers'): Empty.FromString,
+      ('essenceauth.EssenceAuth', 'Login'): LoginRequest.FromString,
       ('essenceauth.EssenceAuth', 'PutApp'): AppChange.FromString,
       ('essenceauth.EssenceAuth', 'PutGroup'): GroupChange.FromString,
       ('essenceauth.EssenceAuth', 'PutUser'): UserChange.FromString,
@@ -1349,6 +1461,7 @@ try:
       ('essenceauth.EssenceAuth', 'ListApps'): AppList.SerializeToString,
       ('essenceauth.EssenceAuth', 'ListGroups'): GroupList.SerializeToString,
       ('essenceauth.EssenceAuth', 'ListUsers'): UserList.SerializeToString,
+      ('essenceauth.EssenceAuth', 'Login'): Token.SerializeToString,
       ('essenceauth.EssenceAuth', 'PutApp'): App.SerializeToString,
       ('essenceauth.EssenceAuth', 'PutGroup'): Group.SerializeToString,
       ('essenceauth.EssenceAuth', 'PutUser'): User.SerializeToString,
@@ -1372,6 +1485,7 @@ try:
       ('essenceauth.EssenceAuth', 'ListApps'): face_utilities.unary_unary_inline(servicer.ListApps),
       ('essenceauth.EssenceAuth', 'ListGroups'): face_utilities.unary_unary_inline(servicer.ListGroups),
       ('essenceauth.EssenceAuth', 'ListUsers'): face_utilities.unary_unary_inline(servicer.ListUsers),
+      ('essenceauth.EssenceAuth', 'Login'): face_utilities.unary_unary_inline(servicer.Login),
       ('essenceauth.EssenceAuth', 'PutApp'): face_utilities.unary_unary_inline(servicer.PutApp),
       ('essenceauth.EssenceAuth', 'PutGroup'): face_utilities.unary_unary_inline(servicer.PutGroup),
       ('essenceauth.EssenceAuth', 'PutUser'): face_utilities.unary_unary_inline(servicer.PutUser),
@@ -1405,6 +1519,7 @@ try:
       ('essenceauth.EssenceAuth', 'ListApps'): Empty.SerializeToString,
       ('essenceauth.EssenceAuth', 'ListGroups'): Empty.SerializeToString,
       ('essenceauth.EssenceAuth', 'ListUsers'): Empty.SerializeToString,
+      ('essenceauth.EssenceAuth', 'Login'): LoginRequest.SerializeToString,
       ('essenceauth.EssenceAuth', 'PutApp'): AppChange.SerializeToString,
       ('essenceauth.EssenceAuth', 'PutGroup'): GroupChange.SerializeToString,
       ('essenceauth.EssenceAuth', 'PutUser'): UserChange.SerializeToString,
@@ -1428,6 +1543,7 @@ try:
       ('essenceauth.EssenceAuth', 'ListApps'): AppList.FromString,
       ('essenceauth.EssenceAuth', 'ListGroups'): GroupList.FromString,
       ('essenceauth.EssenceAuth', 'ListUsers'): UserList.FromString,
+      ('essenceauth.EssenceAuth', 'Login'): Token.FromString,
       ('essenceauth.EssenceAuth', 'PutApp'): App.FromString,
       ('essenceauth.EssenceAuth', 'PutGroup'): Group.FromString,
       ('essenceauth.EssenceAuth', 'PutUser'): User.FromString,
@@ -1451,6 +1567,7 @@ try:
       'ListApps': cardinality.Cardinality.UNARY_UNARY,
       'ListGroups': cardinality.Cardinality.UNARY_UNARY,
       'ListUsers': cardinality.Cardinality.UNARY_UNARY,
+      'Login': cardinality.Cardinality.UNARY_UNARY,
       'PutApp': cardinality.Cardinality.UNARY_UNARY,
       'PutGroup': cardinality.Cardinality.UNARY_UNARY,
       'PutUser': cardinality.Cardinality.UNARY_UNARY,

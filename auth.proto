@@ -6,6 +6,14 @@ import "google/api/annotations.proto";
 
 service EssenceAuth {
 
+    // Login via rest and recieve a token.
+    rpc Login(LoginRequest) returns (Token) {
+        option (google.api.http) = {
+            post: "/api/v2/login"
+            body: "*"
+        };
+    }
+
     // Application endpoints. These are for applications to perform requests related to
     // themselves.
 
@@ -149,6 +157,15 @@ service EssenceAuth {
 }
 
 message Empty {}
+
+message Token {
+    string Token = 1;
+}
+
+message LoginRequest {
+    string ID = 1; // An identifier for a user or application.
+    string Key = 2; // The key, either password or app key.
+}
 
 message App {
     string ID = 1;

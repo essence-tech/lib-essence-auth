@@ -588,6 +588,33 @@
         ]
       }
     },
+    "/api/v2/login": {
+      "post": {
+        "summary": "Login via rest and recieve a token.",
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthToken"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
     "/api/v2/user": {
       "post": {
         "summary": "Used by an application to fetch information about a user using their JWT.",
@@ -752,6 +779,17 @@
         }
       }
     },
+    "essenceauthLoginRequest": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "Key": {
+          "type": "string"
+        }
+      }
+    },
     "essenceauthMembership": {
       "type": "object",
       "properties": {
@@ -794,6 +832,14 @@
           "type": "string"
         },
         "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "essenceauthToken": {
+      "type": "object",
+      "properties": {
+        "Token": {
           "type": "string"
         }
       }
