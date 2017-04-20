@@ -5,7 +5,7 @@ from distutils.core import setup
 
 setup(
     name='Essence Auth',
-    version='2.0.7',
+    version='2.0.8',
     description='Library for the Essence authentication service.',
     author='Josh Fyne',
     author_email='josh.fyne@essencedigital.com',
