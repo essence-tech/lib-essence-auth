@@ -5,14 +5,14 @@ import grpc
 from essenceauth.auth_pb2 import (EssenceAuthStub, Empty, App, AppList, AppChange,
                       AppUserRequest, Membership, Group, GroupList,
                       GroupChange, Permission, PermissionValue, User,
-                      UserList, UserChange, LoginRequest, LoginUser)
+                      UserList, UserChange, LoginRequest, UserLogin)
 
 
 __all__ = ['get_client', 'gen_app_user_request', 'user_has_permission',
            'Empty', 'App', 'AppList', 'AppChange', 'AppUserRequest',
            'Membership', 'Group', 'GroupList', 'GroupChange', 'Permission',
            'PermissionValue', 'User', 'UserList', 'UserChange', 'LoginRequest',
-           'LoginUser']
+           'UserLogin']
 
 
 class AuthException(Exception):
