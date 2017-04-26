@@ -588,6 +588,33 @@
         ]
       }
     },
+    "/api/v2/login": {
+      "post": {
+        "summary": "Login.",
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/essenceauthUserLogin"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/essenceauthLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EssenceAuth"
+        ]
+      }
+    },
     "/api/v2/user": {
       "post": {
         "summary": "Used by an application to fetch information about a user using their JWT.",
@@ -752,6 +779,18 @@
         }
       }
     },
+    "essenceauthLoginRequest": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "Password": {
+          "type": "string"
+        }
+      },
+      "description": "Login through the API."
+    },
     "essenceauthMembership": {
       "type": "object",
       "properties": {
@@ -847,6 +886,24 @@
           }
         }
       }
+    },
+    "essenceauthUserLogin": {
+      "type": "object",
+      "properties": {
+        "Email": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Picture": {
+          "type": "string"
+        },
+        "JWT": {
+          "type": "string"
+        }
+      },
+      "description": "A login response from the API."
     }
   }
 }
