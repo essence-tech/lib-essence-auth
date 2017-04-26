@@ -14,6 +14,11 @@ class EssenceAuthStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.Login = channel.unary_unary(
+        '/essenceauth.EssenceAuth/Login',
+        request_serializer=auth__pb2.LoginRequest.SerializeToString,
+        response_deserializer=auth__pb2.UserLogin.FromString,
+        )
     self.AppGetUser = channel.unary_unary(
         '/essenceauth.EssenceAuth/AppGetUser',
         request_serializer=auth__pb2.AppUserRequest.SerializeToString,
@@ -122,6 +127,13 @@ class EssenceAuthStub(object):
 
 
 class EssenceAuthServicer(object):
+
+  def Login(self, request, context):
+    """Login.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
   def AppGetUser(self, request, context):
     """Application endpoints. These are for applications to perform requests related to
@@ -259,6 +271,11 @@ class EssenceAuthServicer(object):
 
 def add_EssenceAuthServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'Login': grpc.unary_unary_rpc_method_handler(
+          servicer.Login,
+          request_deserializer=auth__pb2.LoginRequest.FromString,
+          response_serializer=auth__pb2.UserLogin.SerializeToString,
+      ),
       'AppGetUser': grpc.unary_unary_rpc_method_handler(
           servicer.AppGetUser,
           request_deserializer=auth__pb2.AppUserRequest.FromString,
