@@ -129,7 +129,7 @@ class EssenceAuthStub(object):
 class EssenceAuthServicer(object):
 
   def Login(self, request, context):
-    """Login.
+    """Login through the API.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')

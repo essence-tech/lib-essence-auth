@@ -590,7 +590,7 @@
     },
     "/api/v2/login": {
       "post": {
-        "summary": "Login.",
+        "summary": "Login through the API.",
         "operationId": "Login",
         "responses": {
           "200": {
@@ -871,6 +871,9 @@
           "type": "string"
         },
         "Password": {
+          "type": "string"
+        },
+        "OldPassword": {
           "type": "string"
         }
       },

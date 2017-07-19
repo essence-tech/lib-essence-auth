@@ -253,4 +253,5 @@ message UserChange {
     string Email = 1;
     string Name = 2;
     string Password = 3;
+    string OldPassword = 4;
 }
